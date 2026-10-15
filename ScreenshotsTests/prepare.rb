@@ -7,6 +7,9 @@ group = project.main_group.new_group('ScreenshotsTests', '../ScreenshotsTests')
 file = group.new_file('ScreenshotsTests.swift')
 test.source_build_phase.add_file_reference(file)
 test.build_configurations.each do |config|
+  config.build_settings['PRODUCT_NAME'] = 'ScreenshotsTests'
+  config.build_settings['PRODUCT_MODULE_NAME'] = 'ScreenshotsTests'
+  config.build_settings['CODE_SIGN_ENTITLEMENTS'] = ''
   config.build_settings['PRODUCT_BUNDLE_IDENTIFIER'] = 'org.lightcal.screenshots.tests'
   config.build_settings['GENERATE_INFOPLIST_FILE'] = 'YES'
   config.build_settings['SWIFT_VERSION'] = '5.0'

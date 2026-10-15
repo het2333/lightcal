@@ -31,9 +31,8 @@ jobs:
           DEVICE_ID=$(xcrun simctl list devices available --json | python -c 'import json,sys; d=json.load(sys.stdin); print(next(v["udid"] for r,a in d["devices"].items() for v in a if "iOS-26" in r and v["name"].startswith("iPhone 17 Pro")))')
           echo "$DEVICE_ID" > /tmp/lightcal-device.txt
           xcrun simctl boot "$DEVICE_ID" || true
-          xcrun simctl bootstatus "$DEVICE_ID" -b
-          xcrun simctl status_bar "$DEVICE_ID" override --time 9:41 --dataNetwork wifi --wifiMode active --wifiBars 3 --batteryState charged --batteryLevel 100
-          xcodebuild test -project ios/CalAI.xcodeproj -scheme Screenshots -configuration Debug -destination "platform=iOS Simulator,id=$DEVICE_ID" -derivedDataPath /tmp/lightcal-build -resultBundlePath /tmp/lightcal-shots.xcresult -parallel-testing-enabled NO CODE_SIGN_IDENTITY=-
+          (xcrun simctl bootstatus "$DEVICE_ID" -b && xcrun simctl status_bar "$DEVICE_ID" override --time 9:41 --dataNetwork wifi --wifiMode active --wifiBars 3 --batteryState charged --batteryLevel 100) > /tmp/lightcal-boot.log 2>&1 &
+          xcodebuild test -project ios/CalAI.xcodeproj -scheme Screenshots -configuration Debug -destination "platform=iOS Simulator,id=$DEVICE_ID" -derivedDataPath /tmp/lightcal-build -resultBundlePath /tmp/lightcal-shots.xcresult -parallel-testing-enabled NO CODE_SIGN_IDENTITY=- ONLY_ACTIVE_ARCH=YES ARCHS="$(uname -m)"
       - name: Export screenshots
         if: always()
         run: |
