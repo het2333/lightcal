@@ -1,0 +1,32 @@
+[
+  {
+    "name": "无深度_炸物拼盘",
+    "image": "/root/autodl-tmp/cal_food_compare_assets/rgb/fried_platter/rgb.jpg",
+    "targets": "/root/autodl-tmp/depth-pipeline-service/targets/fried_platter.json"
+  },
+  {
+    "name": "无深度_蔬菜拼盘",
+    "image": "/root/autodl-tmp/cal_food_compare_assets/rgb/vegetable_board/rgb.jpg",
+    "targets": "/root/autodl-tmp/depth-pipeline-service/targets/vegetable_board.json"
+  },
+  {
+    "name": "无深度_米饭炒面套餐",
+    "image": "/root/autodl-tmp/cal_food_compare_assets/rgb/cafeteria_meal/rgb.jpg",
+    "targets": "/root/autodl-tmp/depth-pipeline-service/targets/cafeteria_meal.json"
+  },
+  {
+    "name": "无深度_IMG6388",
+    "image": "/root/autodl-tmp/cal_food_compare_assets/rgb/img_6388.jpg",
+    "targets": "/root/autodl-tmp/depth-pipeline-service/targets/img6388.json"
+  },
+  {
+    "name": "有深度_炒饭",
+    "image": "/root/autodl-tmp/cal_food_compare_assets/depth_captures/cap_04f23a03f8bb/rgb.jpg",
+    "targets": "/root/autodl-tmp/depth-pipeline-service/targets/depth_fried_rice.json"
+  },
+  {
+    "name": "有深度_可乐",
+    "image": "/root/autodl-tmp/cal_food_compare_assets/depth_captures/cap_cab838efdd31/rgb.jpg",
+    "targets": "/root/autodl-tmp/depth-pipeline-service/targets/depth_cola.json"
+  }
+]

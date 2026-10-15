@@ -1,0 +1,48 @@
+# Local credentials and private configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.mobileprovision
+Secrets.plist
+GoogleService-Info*.plist
+
+# Python and local tools
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+.ruff_cache/
+.superpowers/
+
+# Personal records, uploads, datasets, checkpoints and generated reports
+data/*
+!data/rules/
+*.db
+*.db-*
+*.sqlite*
+static/uploads/
+tmp/
+outputs/
+reports/
+models-cache/
+*.pt
+*.pth
+*.safetensors
+*.ipa
+*.log
+screenlog.*
+
+# macOS and Xcode local state
+.DS_Store
+._*
+build/
+DerivedData/
+xcuserdata/
+*.xcuserstate
+*.xcarchive

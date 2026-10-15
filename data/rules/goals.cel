@@ -1,0 +1,32 @@
+// ── Cal AI Daily Goal Rules ──────────────────────────────────────
+// CEL expressions for checking goal achievement.
+
+// Calorie goal: within 90-110% of target
+"today.calories >= goal.calories && today.calories <= goal.calories * 1.1"
+
+// Protein goal met
+"today.protein >= goal.protein"
+
+// Carbs goal met (within range)
+"today.carbs >= goal.carbs * 0.8 && today.carbs <= goal.carbs * 1.2"
+
+// Under fat limit
+"today.fat <= goal.fat"
+
+// Fiber goal met
+"today.fiber >= goal.fiber"
+
+// Sugar under limit
+"today.sugar <= goal.sugar"
+
+// Water goal met
+"today.water_ml >= goal.water_ml"
+
+// All goals met (perfect day)
+"today.calories >= goal.calories * 0.9 && today.calories <= goal.calories * 1.1 && today.protein >= goal.protein && today.fiber >= goal.fiber && today.water_ml >= goal.water_ml"
+
+// Calorie deficit (ate under goal)
+"today.calories < goal.calories"
+
+// Calorie surplus (ate over goal)
+"today.calories > goal.calories"

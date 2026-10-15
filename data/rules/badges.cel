@@ -1,0 +1,77 @@
+// ── Cal AI Badge Rules ───────────────────────────────────────────
+// CEL expressions that must evaluate to true to unlock badges.
+// Mirrors the rules in Unlock*BadgeUseCase.swift files.
+
+// ── Calories ──────────────────────────────────────────────────────
+
+// Calorie Goal: hit daily calorie target within 90-110%
+// UnlockCaloriesGoalBadgeUseCase
+"today.calories >= goal.calories * 0.9 && today.calories <= goal.calories * 1.1"
+
+// Speed Logger: log a meal within 60 seconds of opening the app
+// UnlockSpeedLoggerBadgeUseCase — timed in app, this is a placeholder
+"true"
+
+// Time Traveler: log a meal for a past date
+// UnlockTimeTravelerBadgeUseCase
+"today.meals_count >= 1"
+
+// ── Meals ─────────────────────────────────────────────────────────
+
+// Logged Meals: log 3+ meals in a day
+// MealBadgesRepository
+"today.meals_count >= 3"
+
+// Clean Plate: log a meal with 0 processed foods
+"today.foods_count >= 1"
+
+// Gremlin: log a midnight snack (meal after 11pm)
+"today.meals_count >= 1"
+
+// ── Water ─────────────────────────────────────────────────────────
+
+// Water Badge: hit daily water goal
+"today.water_ml >= goal.water_ml"
+
+// ── Weight ────────────────────────────────────────────────────────
+
+// Weight Loss: log weight consistently for 7+ days
+"user.streak >= 7"
+
+// ── Nutrition ─────────────────────────────────────────────────────
+
+// Eating Greens: eat green vegetables
+// UnlockEatingGreensBadgeUseCase
+"true"
+
+// Berry Good: eat berries
+// UnlockBerryGoodBadgeUseCase
+"true"
+
+// Nut Case: eat nuts
+// UnlockNutCaseBadgeUseCase
+"true"
+
+// ── Streak ────────────────────────────────────────────────────────
+
+// 7-day streak
+"user.streak >= 7"
+
+// 30-day streak
+"user.streak >= 30"
+
+// ── Health ────────────────────────────────────────────────────────
+
+// Health Nut: get a 10 health score in a day
+"true"
+
+// Dumpster Diver: don't eat ultra-processed for a day
+"true"
+
+// Green Machine: eat greens 7 days in a row
+"user.streak >= 7"
+
+// ── Workout ───────────────────────────────────────────────────────
+
+// Sweat Equity: log 3+ workouts in a week
+"true"

@@ -1,0 +1,126 @@
+# LightCal · 食光
+
+一个使用 SwiftUI 和 FastAPI 构建的开源饮食与健康记录项目。支持拍照估算餐食、手动记录、条码查询，以及饮水、运动、体重、睡眠和轻断食记录。
+
+An open-source SwiftUI app and FastAPI backend for meal estimation and daily health tracking.
+
+## 功能
+
+- 从相册选图识别食物、估算可食克重和营养；配置 GPU 服务后可使用当前相机深度拍摄流程。
+- 按食物逐项查看、修改并保存餐食；记录剩余量并重算摄入。
+- 食物搜索、文字记录、条码查询和食材菜谱推荐。
+- 饮水、运动、体重、睡眠、步数、轻断食与每日汇总。
+- iOS 相机与可选深度采集、Apple Health 读写。
+- 多模型服务适配，以及独立的 GPU 深度识别实验接口。
+
+这是面向个人使用和开发研究的单用户原型。营养和克重是估算值；无深度照片的个位数克重不代表测量精度。
+
+## 快速启动后端
+
+需要 Python 3.12 或更新版本。建议使用独立虚拟环境。
+
+```bash
+git clone https://github.com/het2333/lightcal.git
+cd lightcal
+python3.12 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+cp .env.example .env
+```
+
+编辑 `.env`，填入自己的 `QWEN_API_KEY`，然后启动：
+
+```bash
+uvicorn server:app --host 127.0.0.1 --port 8001
+```
+
+- 健康检查：<http://127.0.0.1:8001/>
+- API 文档：<http://127.0.0.1:8001/docs>
+- 餐食分析：`POST /v6/describeMeal`
+
+首次启动会创建本地 SQLite 数据库，并加入源码内置的小型食物示例库。完整营养库、菜谱库、个人记录和模型权重需要自行准备。未配置模型密钥时，部分记录功能仍可使用，图片识别不可用；文字接口可能返回演示用回退结果。
+
+请将项目放在支持 SQLite 的本地文件系统上。部分外置 exFAT 卷会出现 `SQLITE_READONLY_DBMOVED`，此时应将项目克隆到系统磁盘再运行。
+
+### Docker
+
+```bash
+cp .env.example .env
+# 在 .env 中配置模型密钥
+docker compose up --build
+```
+
+数据保存在本地 `data/`，上传图片保存在 `static/uploads/`；这两个目录挂载到容器并被 Git 忽略。
+
+## 运行 iOS App
+
+使用 macOS、Xcode 26 或更新版本，部署目标为 iOS 17.0。
+
+1. 打开 `ios/CalAI.xcodeproj`，选择 `CalAI` scheme。
+2. 在 Signing & Capabilities 中选择自己的开发团队，按需修改 Bundle Identifier。
+3. 模拟器默认访问 `http://127.0.0.1:8001/v6`。
+4. 真机调试时，让手机和电脑处于同一网络；用 `--host 0.0.0.0` 启动后端，并在 App 设置或 `ios/CalAI/Info.plist` 的 `APIBaseURL` 中填写电脑的局域网地址。
+5. 健康数据同步及深度采集需要相应设备和系统权限。**当前相机界面要求有效深度数据，并依赖已部署且可访问的 GPU 服务；默认配置关闭 GPU，因此请从相册选图使用 Qwen 识别。** 无深度相机拍摄目前会被界面拒绝，尚未自动切换到普通照片路线。
+
+开源工程使用自行绘制的简化 SVG 占位资源。发布 App 前请配置自己的 App Icon、签名及服务地址。
+
+## 图片识别流程
+
+默认配置为 `qwen-vl-plus` + `direct_nutrition`：
+
+1. 上传图片，后端转 RGB、压缩至最长边 1024 像素。
+2. 视觉模型逐项识别食物、数量、烹饪方式和置信度，并估算克重与核心营养。
+3. 解析 JSON，执行营养合理性规则及部分常见食物校正，合并重复项目。
+4. 返回食物和营养结果；用户检查、调整后保存。
+
+无可靠深度时，模型参考餐具、容器占比、堆叠外观、数量和常见份量估重。照片会发送至所配置的模型服务；API 调用可能产生费用。
+
+另有数据库校准、两阶段复核和 GPU 深度实验模式，见 [架构与配置](docs/architecture.md)。
+
+## 测试
+
+在仓库根目录运行，使用测试替身而非真实模型密钥：
+
+```bash
+python -m pytest tests -q
+```
+
+iOS 模拟器编译：
+
+```bash
+xcodebuild -project ios/CalAI.xcodeproj -scheme CalAI \
+  -configuration Debug -sdk iphonesimulator \
+  -destination 'generic/platform=iOS Simulator' \
+  CODE_SIGNING_ALLOWED=NO build
+```
+
+CI 自动运行 Python 测试和 iOS 模拟器编译。
+
+## 目录
+
+```text
+server.py       FastAPI 接口与单用户应用入口
+services/       模型适配、食物数据库、营养计算与记录服务
+models/         Pydantic 数据模型
+engine/         规则表达式解析与计算
+prompts/        图片识别及营养复核提示词
+ios/CalAI/      SwiftUI App 源码
+data/rules/     示例规则
+scripts/        数据处理和实验工具
+tests/          自动化测试
+```
+
+`scripts/` 中的模型训练、数据采集和云端脚本属于可选研究工具，保留了原实验环境的目录约定；运行前应阅读脚本并配置依赖和路径。主应用启动不依赖这些工具。
+
+## 数据、依赖与部署边界
+
+- 仓库不包含商业 App 安装包或其解包资源、第三方 SDK 二进制、用户照片、健康记录、私有数据库、密钥或模型权重。
+- 源码中的历史 `CalAI` 名称及兼容接口沿用开发时命名；本项目与同名商业产品无隶属或授权关系。
+- MIT 许可证适用于本仓库自有代码。第三方服务、模型与数据集按各自条款使用，见 [第三方说明](THIRD_PARTY_NOTICES.md)。
+- 后端使用固定单用户上下文，未实现面向公网的用户认证和访问隔离。请在本机或受信任网络使用；公网部署需要自行增加认证、HTTPS、访问限制与数据保护。
+
+## 贡献与许可
+
+欢迎通过 Issue 报告可复现的问题，或提交带验证说明的 Pull Request。请勿提交密钥、真实个人记录、未获授权的数据或商业 App 素材。
+
+项目采用 [MIT License](LICENSE)。

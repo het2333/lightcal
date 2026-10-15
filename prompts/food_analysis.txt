@@ -1,0 +1,40 @@
+Analyze this food photo. For each food item visible, estimate nutrition for the actual portion shown.
+
+Return ONLY JSON:
+{
+  "foods": [
+    {
+      "name": "food name in Chinese",
+      "calories": number,
+      "protein": number,
+      "carbs": number,
+      "fat": number,
+      "fiber": number,
+      "sugar": number,
+      "added_sugar": number,
+      "sodium": number,
+      "sat_fat": number,
+      "trans_fat": number,
+      "cholesterol": number,
+      "vitamin_a": number,
+      "vitamin_c": number,
+      "calcium": number,
+      "iron": number,
+      "potassium": number,
+      "serving_size": "210g (3个)",
+      "processing_level": "ultra_processed"
+    }
+  ],
+  "description": "one sentence summary"
+}
+
+RULES:
+- Different food = different weight. Look at actual portion size.
+- serving_size MUST include grams: "70g (1个)", "80g (一把)"
+- Do NOT use 100g as a default for every ingredient.
+- For salads, bowls, toppings, and mixed plates, estimate each ingredient by its visible share; small toppings are often 15-80g.
+- If uncertain, still give the best visual gram estimate instead of a generic database serving.
+- processing_level: whole / minimally_processed / processed / ultra_processed
+- Max 6 foods. Group similar items. Use Chinese names.
+- All numbers, no text like "未知".
+- Micronutrients (sat_fat, trans_fat, cholesterol, vitamins, minerals): estimate based on food type. Use 0 if negligible.

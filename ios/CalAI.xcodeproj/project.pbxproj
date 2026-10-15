@@ -1,0 +1,530 @@
+// !$*UTF8*$!
+{
+	"classes" = {
+	};
+	"objectVersion" = "56";
+	"archiveVersion" = "1";
+	"objects" = {
+		"4d41fcf9576d43e2b1d8b779" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "2a78d18cab6f4bda9c4ed8e0";
+		};
+		"7fba8656fd9a46cd9a5f3b38" = {
+			"path" = "Views/Info/PreferencesPageView.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"2a8b7c6d5e4f30192817a6b5" = {
+			"isa" = "PBXResourcesBuildPhase";
+			"buildActionMask" = "2147483647";
+			"files" = (
+				"0f9d8e4c7b6a5d3c2e1f9087",
+			);
+			"runOnlyForDeploymentPostprocessing" = "0";
+		};
+		"2be8a6d2301d0a7fcc90781e" = {
+			"path" = "Services/APIClient.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"99e90219ddca003e38982e42" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "05090384aa8a4d5b4cb11a20";
+		};
+		"fb1d9eef16456a07f994c1aa" = {
+			"path" = "Views/Components/Components.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"7ffc4d510260a8544e5550e6" = {
+			"isa" = "XCBuildConfiguration";
+			"buildSettings" = {
+				"CODE_SIGN_ENTITLEMENTS" = "CalAI/CalAI.entitlements";
+				"MARKETING_VERSION" = "26.27.0";
+				"ENABLE_DEBUG_DYLIB" = "NO";
+				"SUPPORTED_PLATFORMS" = "iphonesimulator iphoneos";
+				"PRODUCT_BUNDLE_IDENTIFIER" = "org.lightcal.app";
+				"CURRENT_PROJECT_VERSION" = "1931";
+				"INFOPLIST_KEY_CFBundleDisplayName" = "食光";
+				"TARGETED_DEVICE_FAMILY" = "1";
+				"CODE_SIGN_STYLE" = "Automatic";
+				"SDKROOT" = "iphoneos";
+				"LD_RUNPATH_SEARCH_PATHS" = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				"SWIFT_VERSION" = "5.0";
+				"INFOPLIST_KEY_NSPhotoLibraryUsageDescription" = "We need access to your photo library in order to select and save images.";
+				"PRODUCT_NAME" = "LightCal";
+				"IPHONEOS_DEPLOYMENT_TARGET" = "17.0";
+				"INFOPLIST_KEY_UISupportedInterfaceOrientations" = "UIInterfaceOrientationPortrait";
+				"ENABLE_PREVIEWS" = "YES";
+				"INFOPLIST_KEY_NSCameraUsageDescription" = "We need your camera in order to analyze your food";
+				"INFOPLIST_FILE" = "CalAI/Info.plist";
+				"GENERATE_INFOPLIST_FILE" = "NO";
+				"ALWAYS_SEARCH_USER_PATHS" = "NO";
+			};
+			"name" = "Release";
+		};
+		"2a78d18cab6f4bda9c4ed8e0" = {
+			"path" = "Views/Fasting/FastingPageView.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"f7a8c0a647a92d7b91ebafbe" = {
+			"path" = "Models.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"75c83417ba3b57bc68818478" = {
+			"path" = "ContentView.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"6a1d23b7c9e04f8ab2d63c51" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "0df3952a6bc84f749ef7126d";
+		};
+		"c38b2dbac3cf4ff9aebc8801" = {
+			"path" = "Views/Logging/ManualLogSheetView.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"6b37f8e2e08b4f7f8aa82000" = {
+			"path" = "RecipeMealType.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"10f265baffa868e4aa4f27de" = {
+			"path" = "ViewModels/HomeViewModel.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"24a23cb39cab47d399dcb88a" = {
+			"path" = "Views/Info/RecommendationsPageView.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"068e7d407e833bb0138a4f64" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "2ef15b5d09f797c112dfbb6a";
+		};
+		"6b37f8e2e08b4f7f8aa82001" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "6b37f8e2e08b4f7f8aa82000";
+		};
+		"a06a3f34aac42f8bd17f7111" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "9dd9c386c9f4dec670e8f09e";
+		};
+		"f77fb189634cfdcaa109ec1c" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "72e0439b94f7bf39d1a5d376";
+		};
+		"8f218e04004544d1a3d12af3" = {
+			"path" = "Views/Logging/SleepLogSheetView.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"828cab0b96564e079315db6e" = {
+			"path" = "Views/Logging/ExerciseLogSheetView.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"7ea6eb12910bc965a04614fb" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "fb1d9eef16456a07f994c1aa";
+		};
+		"8f59757afb772301f3f7f8a2" = {
+			"path" = "Views/Result/MealGroupDetailPageView.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"52e1bc4d8a7242fb8c52d9b1" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "6b52aa4e8d5a4b84bb2064bc";
+		};
+		"41a3dfe45b1d44199631303c" = {
+			"path" = "Views/Logging/VoiceLogSheetView.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"9a0a3e1c7ba5dc779cc8b0f7" = {
+			"isa" = "XCConfigurationList";
+			"defaultConfigurationIsVisible" = "0";
+			"defaultConfigurationName" = "Release";
+			"buildConfigurations" = (
+				"b1da4861a4edf5615ec39f07",
+				"7ffc4d510260a8544e5550e6",
+			);
+		};
+		"7ee7184c970537ea83afe7f9" = {
+			"isa" = "PBXSourcesBuildPhase";
+			"buildActionMask" = "2147483647";
+			"files" = (
+				"99e90219ddca003e38982e42",
+				"c6a5aa1937c362efe96d3e28",
+				"825daa6cbba7190d7668cbf6",
+				"6b37f8e2e08b4f7f8aa82001",
+				"fe41159260b9dc45afd89d65",
+				"6f11dddc1061471980d76aa9",
+				"6a1d23b7c9e04f8ab2d63c51",
+				"ca59d2bb301ac22cd4de76d7",
+				"f77fb189634cfdcaa109ec1c",
+				"1d39bb621a6d4f7f8c4e2a11",
+				"36b267e33270f62954e64ab3",
+				"6176104c75f0bd609924f76a",
+				"7ea6eb12910bc965a04614fb",
+				"4d41fcf9576d43e2b1d8b779",
+				"db47635e579bb9f22ea802a9",
+				"998e1c63ac82ed66a9323e0d",
+				"9de107ba5c814d8f9e6a203b",
+				"499edc78e325937b2f496609",
+				"49f6df8c5a9e4529a5f26b71",
+				"4a3a9a7fc2d84150bfbec321",
+				"4ab6ce084d7c4d39a2c6fb72",
+				"e1d59659513a44f986833f5e",
+				"52e1bc4d8a7242fb8c52d9b1",
+				"4f1c49a95f784d23b54d728f",
+				"5cb53038134d4c2ab1497bfa",
+				"5b9fd0b8f7a0428ab2cf26aa",
+				"068e7d407e833bb0138a4f64",
+				"9bcdfbee09aae476a2f0ba84",
+				"b873f9e081790fd7df234a51",
+				"a06a3f34aac42f8bd17f7111",
+			);
+			"runOnlyForDeploymentPostprocessing" = "0";
+		};
+		"511c8fe6aa06cc5c6e4890cb" = {
+			"path" = "Views/Home/HomePageView.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"3c05e094536c92a1b8b3e170" = {
+			"path" = "Views/Components/BadgesPageView.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"db47635e579bb9f22ea802a9" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "927e34595fd93eb36bb384ee";
+		};
+		"a2501b56d7b8bb2dd22282d8" = {
+			"isa" = "XCConfigurationList";
+			"defaultConfigurationIsVisible" = "0";
+			"defaultConfigurationName" = "Release";
+			"buildConfigurations" = (
+				"b1da4861a4edf5615ec39f07",
+				"7ffc4d510260a8544e5550e6",
+			);
+		};
+		"06681851e0c3b559ec392f2c" = {
+			"path" = "Views/Components/ActionMenuSheetView.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"b873f9e081790fd7df234a51" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "8f59757afb772301f3f7f8a2";
+		};
+		"b1da4861a4edf5615ec39f07" = {
+			"isa" = "XCBuildConfiguration";
+			"buildSettings" = {
+				"CODE_SIGN_ENTITLEMENTS" = "CalAI/CalAI.entitlements";
+				"MARKETING_VERSION" = "26.27.0";
+				"ENABLE_DEBUG_DYLIB" = "NO";
+				"SUPPORTED_PLATFORMS" = "iphonesimulator iphoneos";
+				"PRODUCT_BUNDLE_IDENTIFIER" = "org.lightcal.app";
+				"CURRENT_PROJECT_VERSION" = "1931";
+				"INFOPLIST_KEY_CFBundleDisplayName" = "食光";
+				"SWIFT_ACTIVE_COMPILATION_CONDITIONS" = "DEBUG $(inherited)";
+				"TARGETED_DEVICE_FAMILY" = "1";
+				"CODE_SIGN_STYLE" = "Automatic";
+				"SWIFT_OPTIMIZATION_LEVEL" = "-Onone";
+				"SDKROOT" = "iphoneos";
+				"LD_RUNPATH_SEARCH_PATHS" = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				"SWIFT_VERSION" = "5.0";
+				"INFOPLIST_KEY_NSPhotoLibraryUsageDescription" = "We need access to your photo library in order to select and save images.";
+				"PRODUCT_NAME" = "LightCal";
+				"IPHONEOS_DEPLOYMENT_TARGET" = "17.0";
+				"INFOPLIST_KEY_UISupportedInterfaceOrientations" = "UIInterfaceOrientationPortrait";
+				"ENABLE_PREVIEWS" = "YES";
+				"INFOPLIST_KEY_NSCameraUsageDescription" = "We need your camera in order to analyze your food";
+				"INFOPLIST_FILE" = "CalAI/Info.plist";
+				"GENERATE_INFOPLIST_FILE" = "NO";
+				"ALWAYS_SEARCH_USER_PATHS" = "NO";
+			};
+			"name" = "Debug";
+		};
+		"4f1c49a95f784d23b54d728f" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "c38b2dbac3cf4ff9aebc8801";
+		};
+		"92e47eb28b2ca7d0aa1bf44e" = {
+			"path" = "Views/Recap/RecapPageView.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"36b267e33270f62954e64ab3" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "06681851e0c3b559ec392f2c";
+		};
+		"3ac62fa4cb6e41ed916c20a8" = {
+			"path" = "Assets.xcassets";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "folder.assetcatalog";
+			"sourceTree" = "<group>";
+		};
+		"6b52aa4e8d5a4b84bb2064bc" = {
+			"path" = "Views/Logging/FoodSearchSheetView.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"a76071bb1ca643bb8326d010" = {
+			"path" = "Services/DepthCaptureManager.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"ca59d2bb301ac22cd4de76d7" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "10f265baffa868e4aa4f27de";
+		};
+		"05090384aa8a4d5b4cb11a20" = {
+			"path" = "CalAIApp.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"9bcdfbee09aae476a2f0ba84" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "92e47eb28b2ca7d0aa1bf44e";
+		};
+		"6f11dddc1061471980d76aa9" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "a76071bb1ca643bb8326d010";
+		};
+		"499edc78e325937b2f496609" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "2733b9c39bc75b41354f2cb8";
+		};
+		"fe41159260b9dc45afd89d65" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "2be8a6d2301d0a7fcc90781e";
+		};
+		"9dd9c386c9f4dec670e8f09e" = {
+			"path" = "Views/Result/ResultPageView.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"2ef15b5d09f797c112dfbb6a" = {
+			"path" = "Views/Onboarding/OnboardingView.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"0df3952a6bc84f749ef7126d" = {
+			"path" = "Services/HealthKitSyncService.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"998e1c63ac82ed66a9323e0d" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "511c8fe6aa06cc5c6e4890cb";
+		};
+		"9de107ba5c814d8f9e6a203b" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "d879ec37a15241df9347b61a";
+		};
+		"2733b9c39bc75b41354f2cb8" = {
+			"path" = "Views/Info/InfoPageView.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"42aefbae01d2dfd981f7da7d" = {
+			"productType" = "com.apple.product-type.application";
+			"productReference" = "EB381FB02FCE78FA00060B11";
+			"buildConfigurationList" = "9a0a3e1c7ba5dc779cc8b0f7";
+			"productName" = "CalAI";
+			"isa" = "PBXNativeTarget";
+			"buildPhases" = (
+				"7ee7184c970537ea83afe7f9",
+				"2a8b7c6d5e4f30192817a6b5",
+			);
+			"dependencies" = (
+			);
+			"name" = "CalAI";
+			"buildRules" = (
+			);
+		};
+		"49f6df8c5a9e4529a5f26b71" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "7fba8656fd9a46cd9a5f3b38";
+		};
+		"9c0e75f0ab274b6ca2e30d41" = {
+			"path" = "Views/Coach/CoachDrawerView.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"4a3a9a7fc2d84150bfbec321" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "24a23cb39cab47d399dcb88a";
+		};
+		"1d39bb621a6d4f7f8c4e2a11" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "9c0e75f0ab274b6ca2e30d41";
+		};
+		"6176104c75f0bd609924f76a" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "3c05e094536c92a1b8b3e170";
+		};
+		"a2e8077f36a44369a3cc8a75" = {
+			"path" = "Views/Info/IngredientRecipeSheetView.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"4dc844abccfc0d132d087c1c" = {
+			"buildConfigurationList" = "a2501b56d7b8bb2dd22282d8";
+			"targets" = (
+				"42aefbae01d2dfd981f7da7d",
+			);
+			"developmentRegion" = "en";
+			"knownRegions" = (
+				"en",
+				"zh-Hans",
+				"Base",
+			);
+			"isa" = "PBXProject";
+			"compatibilityVersion" = "Xcode 14.0";
+			"productRefGroup" = "db0f6f37ebeb6ea094891243";
+			"projectDirPath" = "";
+			"attributes" = {
+				"LastUpgradeCheck" = "1600";
+				"BuildIndependentTargetsInParallel" = "1";
+			};
+			"hasScannedForEncodings" = "0";
+			"projectRoot" = "";
+			"mainGroup" = "db0f6f37ebeb6ea094891243";
+		};
+		"db0f6f37ebeb6ea094891243" = {
+			"path" = "CalAI";
+			"isa" = "PBXGroup";
+			"children" = (
+				"3ac62fa4cb6e41ed916c20a8",
+				"05090384aa8a4d5b4cb11a20",
+				"75c83417ba3b57bc68818478",
+				"f7a8c0a647a92d7b91ebafbe",
+				"6b37f8e2e08b4f7f8aa82000",
+				"2be8a6d2301d0a7fcc90781e",
+				"a76071bb1ca643bb8326d010",
+				"0df3952a6bc84f749ef7126d",
+				"10f265baffa868e4aa4f27de",
+				"72e0439b94f7bf39d1a5d376",
+				"9c0e75f0ab274b6ca2e30d41",
+				"06681851e0c3b559ec392f2c",
+				"3c05e094536c92a1b8b3e170",
+				"fb1d9eef16456a07f994c1aa",
+				"2a78d18cab6f4bda9c4ed8e0",
+				"927e34595fd93eb36bb384ee",
+				"511c8fe6aa06cc5c6e4890cb",
+				"d879ec37a15241df9347b61a",
+				"2733b9c39bc75b41354f2cb8",
+				"7fba8656fd9a46cd9a5f3b38",
+				"24a23cb39cab47d399dcb88a",
+				"a2e8077f36a44369a3cc8a75",
+				"828cab0b96564e079315db6e",
+				"6b52aa4e8d5a4b84bb2064bc",
+				"c38b2dbac3cf4ff9aebc8801",
+				"8f218e04004544d1a3d12af3",
+				"41a3dfe45b1d44199631303c",
+				"2ef15b5d09f797c112dfbb6a",
+				"92e47eb28b2ca7d0aa1bf44e",
+				"8f59757afb772301f3f7f8a2",
+				"9dd9c386c9f4dec670e8f09e",
+				"EB381FB02FCE78FA00060B11",
+			);
+			"sourceTree" = "<group>";
+		};
+		"e1d59659513a44f986833f5e" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "828cab0b96564e079315db6e";
+		};
+		"72e0439b94f7bf39d1a5d376" = {
+			"path" = "Views/Camera/CameraView.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"EB381FB02FCE78FA00060B11" = {
+			"path" = "LightCal.app";
+			"isa" = "PBXFileReference";
+			"includeInIndex" = "0";
+			"explicitFileType" = "wrapper.application";
+			"sourceTree" = "BUILT_PRODUCTS_DIR";
+		};
+		"c6a5aa1937c362efe96d3e28" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "75c83417ba3b57bc68818478";
+		};
+		"0f9d8e4c7b6a5d3c2e1f9087" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "3ac62fa4cb6e41ed916c20a8";
+		};
+		"825daa6cbba7190d7668cbf6" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "f7a8c0a647a92d7b91ebafbe";
+		};
+		"5cb53038134d4c2ab1497bfa" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "8f218e04004544d1a3d12af3";
+		};
+		"927e34595fd93eb36bb384ee" = {
+			"path" = "Views/History/HistoryPageView.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"d879ec37a15241df9347b61a" = {
+			"path" = "Views/Info/HealthSyncSheetView.swift";
+			"isa" = "PBXFileReference";
+			"lastKnownFileType" = "sourcecode.swift";
+			"sourceTree" = "<group>";
+		};
+		"5b9fd0b8f7a0428ab2cf26aa" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "41a3dfe45b1d44199631303c";
+		};
+		"4ab6ce084d7c4d39a2c6fb72" = {
+			"isa" = "PBXBuildFile";
+			"fileRef" = "a2e8077f36a44369a3cc8a75";
+		};
+	};
+	"rootObject" = "4dc844abccfc0d132d087c1c";
+}
