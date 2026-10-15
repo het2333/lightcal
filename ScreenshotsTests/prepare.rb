@@ -4,7 +4,11 @@ app = project.targets.find { |t| t.name == 'CalAI' }
 test = project.new_target(:ui_test_bundle, 'ScreenshotsTests', :ios, '17.0')
 test.add_dependency(app)
 group = project.main_group.new_group('ScreenshotsTests', '../ScreenshotsTests')
-file = group.new_file('ScreenshotsTests.swift')
+source_path = File.expand_path('ScreenshotsTests/ScreenshotsTests.swift', Dir.pwd)
+file = group.new_file(source_path)
+file.source_tree = '<absolute>'
+file.path = source_path
+abort("Missing screenshot test source: #{file.real_path}") unless File.file?(file.real_path)
 test.source_build_phase.add_file_reference(file)
 test.build_configurations.each do |config|
   config.build_settings['PRODUCT_NAME'] = 'ScreenshotsTests'
