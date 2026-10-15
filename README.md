@@ -4,6 +4,16 @@
 
 An open-source SwiftUI app and FastAPI backend for meal estimation and daily health tracking.
 
+## 界面预览
+
+以下截图于 2026 年 10 月 15 日从当前开源版本重新运行截取，使用独立演示数据。设备为 iPhone 17 Pro 模拟器（iOS 26.0）。
+
+| 首页 | 记录总览 |
+| --- | --- |
+| <img src="docs/screenshots/home.png" alt="首页与每日营养概览" width="320"> | <img src="docs/screenshots/meals.png" alt="记录总览与餐食日历" width="320"> |
+| 饮水记录 | 轻断食 |
+| <img src="docs/screenshots/hydration.png" alt="饮水记录页面" width="320"> | <img src="docs/screenshots/fasting.png" alt="轻断食页面" width="320"> |
+
 ## 功能
 
 - 从相册选图识别食物、估算可食克重和营养；配置 GPU 服务后可使用当前相机深度拍摄流程。
