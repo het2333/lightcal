@@ -12,6 +12,7 @@ test.build_configurations.each do |config|
   config.build_settings['CODE_SIGN_ENTITLEMENTS'] = ''
   config.build_settings['PRODUCT_BUNDLE_IDENTIFIER'] = 'org.lightcal.screenshots.tests'
   config.build_settings['GENERATE_INFOPLIST_FILE'] = 'YES'
+  config.build_settings['INFOPLIST_FILE'] = ''
   config.build_settings['SWIFT_VERSION'] = '5.0'
   config.build_settings['TEST_TARGET_NAME'] = 'CalAI'
   config.build_settings['CODE_SIGN_STYLE'] = 'Automatic'
