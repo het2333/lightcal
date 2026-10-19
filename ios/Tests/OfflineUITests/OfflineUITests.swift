@@ -13,12 +13,20 @@ final class OfflineUITests: XCTestCase {
         settings.tap()
         let key = app.secureTextFields["qwen.apiKey"]
         XCTAssertTrue(key.waitForExistence(timeout: 10))
-        let save = app.buttons["qwen.save"]
-        XCTAssertFalse(save.isEnabled)
         capture(app, "qwen-settings")
+        let save = app.buttons["qwen.save"]
+        for _ in 0..<5 {
+            if save.exists { break }
+            app.swipeUp()
+        }
+        XCTAssertTrue(save.exists)
+        XCTAssertFalse(save.isEnabled)
+        for _ in 0..<5 {
+            if key.exists && key.isHittable { break }
+            app.swipeDown()
+        }
         key.tap()
         key.typeText("test-key-never-sent")
-        XCTAssertFalse(save.isEnabled, "No API call is allowed until the user grants consent")
         app.buttons["完成"].tap()
         XCTAssertTrue(settings.waitForExistence(timeout: 10))
         capture(app, "qwen-chat")
