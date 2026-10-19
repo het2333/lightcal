@@ -911,6 +911,7 @@ struct VoiceLogSheetView: View {
     }
 
     private func friendlyVoiceError(_ error: Error, fallback: String) -> String {
+        if let qwenError = error as? QwenError { return qwenError.localizedDescription }
         let raw = error.localizedDescription.trimmingCharacters(in: .whitespacesAndNewlines)
         if isConnectionFailureMessage(raw) {
             return "现在没连上，这条还没有保存；你写的内容还在，检查网络后再点保存。"

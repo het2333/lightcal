@@ -1,530 +1,601 @@
 // !$*UTF8*$!
 {
-	"classes" = {
+	archiveVersion = 1;
+	classes = {
 	};
-	"objectVersion" = "56";
-	"archiveVersion" = "1";
-	"objects" = {
-		"4d41fcf9576d43e2b1d8b779" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "2a78d18cab6f4bda9c4ed8e0";
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		03CE060810F4F772E08F6B3A /* AppFlowTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 413D2ABCA0284678EB7B6B1D /* AppFlowTests.swift */; };
+		068e7d407e833bb0138a4f64 /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2ef15b5d09f797c112dfbb6a /* OnboardingView.swift */; };
+		09DDB00F05CB71C3327B33EB /* PrivacyInfo.xcprivacy in Resources */ = {isa = PBXBuildFile; fileRef = 134B52D2AE38A4BF24463613 /* PrivacyInfo.xcprivacy */; };
+		0f9d8e4c7b6a5d3c2e1f9087 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3ac62fa4cb6e41ed916c20a8 /* Assets.xcassets */; };
+		1d39bb621a6d4f7f8c4e2a11 /* CoachDrawerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9c0e75f0ab274b6ca2e30d41 /* CoachDrawerView.swift */; };
+		36b267e33270f62954e64ab3 /* ActionMenuSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 06681851e0c3b559ec392f2c /* ActionMenuSheetView.swift */; };
+		3CF8EA15B254C89F42650C17 /* QwenSettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 99AB37D137AFFA5A5354BCE1 /* QwenSettingsView.swift */; };
+		3F2A708F8C6AD7551CEFF8DD /* OfflineUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A812C406F02B49F545C89B /* OfflineUITests.swift */; };
+		499edc78e325937b2f496609 /* InfoPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2733b9c39bc75b41354f2cb8 /* InfoPageView.swift */; };
+		49f6df8c5a9e4529a5f26b71 /* PreferencesPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7fba8656fd9a46cd9a5f3b38 /* PreferencesPageView.swift */; };
+		4D6188D140AFD24E00FA4C4E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A73D6D7D30022A9B746A4562 /* Foundation.framework */; };
+		4a3a9a7fc2d84150bfbec321 /* RecommendationsPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 24a23cb39cab47d399dcb88a /* RecommendationsPageView.swift */; };
+		4ab6ce084d7c4d39a2c6fb72 /* IngredientRecipeSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = a2e8077f36a44369a3cc8a75 /* IngredientRecipeSheetView.swift */; };
+		4d41fcf9576d43e2b1d8b779 /* FastingPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2a78d18cab6f4bda9c4ed8e0 /* FastingPageView.swift */; };
+		4f1c49a95f784d23b54d728f /* ManualLogSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = c38b2dbac3cf4ff9aebc8801 /* ManualLogSheetView.swift */; };
+		52e1bc4d8a7242fb8c52d9b1 /* FoodSearchSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6b52aa4e8d5a4b84bb2064bc /* FoodSearchSheetView.swift */; };
+		5b9fd0b8f7a0428ab2cf26aa /* VoiceLogSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41a3dfe45b1d44199631303c /* VoiceLogSheetView.swift */; };
+		5cb53038134d4c2ab1497bfa /* SleepLogSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8f218e04004544d1a3d12af3 /* SleepLogSheetView.swift */; };
+		6176104c75f0bd609924f76a /* BadgesPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3c05e094536c92a1b8b3e170 /* BadgesPageView.swift */; };
+		6C9BF1C1740AA839636E0E3B /* LocalMealImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81AA04DAA9D916D32BDCB44 /* LocalMealImage.swift */; };
+		6a1d23b7c9e04f8ab2d63c51 /* HealthKitSyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0df3952a6bc84f749ef7126d /* HealthKitSyncService.swift */; };
+		6b37f8e2e08b4f7f8aa82001 /* RecipeMealType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6b37f8e2e08b4f7f8aa82000 /* RecipeMealType.swift */; };
+		6f11dddc1061471980d76aa9 /* DepthCaptureManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = a76071bb1ca643bb8326d010 /* DepthCaptureManager.swift */; };
+		73AD7118261136D845A01099 /* QwenService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6B823CF8E2DF1C80580712D0 /* QwenService.swift */; };
+		7ea6eb12910bc965a04614fb /* Components.swift in Sources */ = {isa = PBXBuildFile; fileRef = fb1d9eef16456a07f994c1aa /* Components.swift */; };
+		825daa6cbba7190d7668cbf6 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = f7a8c0a647a92d7b91ebafbe /* Models.swift */; };
+		998e1c63ac82ed66a9323e0d /* HomePageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 511c8fe6aa06cc5c6e4890cb /* HomePageView.swift */; };
+		99e90219ddca003e38982e42 /* CalAIApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05090384aa8a4d5b4cb11a20 /* CalAIApp.swift */; };
+		9bcdfbee09aae476a2f0ba84 /* RecapPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 92e47eb28b2ca7d0aa1bf44e /* RecapPageView.swift */; };
+		9de107ba5c814d8f9e6a203b /* HealthSyncSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = d879ec37a15241df9347b61a /* HealthSyncSheetView.swift */; };
+		A879720C70CBCA88593CEBD1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A73D6D7D30022A9B746A4562 /* Foundation.framework */; };
+		E1C7ADE52597A38EEBF25672 /* LocalDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75E1B40A5938A6577DAA20F /* LocalDataStore.swift */; };
+		a06a3f34aac42f8bd17f7111 /* ResultPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9dd9c386c9f4dec670e8f09e /* ResultPageView.swift */; };
+		b873f9e081790fd7df234a51 /* MealGroupDetailPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8f59757afb772301f3f7f8a2 /* MealGroupDetailPageView.swift */; };
+		c6a5aa1937c362efe96d3e28 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75c83417ba3b57bc68818478 /* ContentView.swift */; };
+		ca59d2bb301ac22cd4de76d7 /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10f265baffa868e4aa4f27de /* HomeViewModel.swift */; };
+		db47635e579bb9f22ea802a9 /* HistoryPageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 927e34595fd93eb36bb384ee /* HistoryPageView.swift */; };
+		e1d59659513a44f986833f5e /* ExerciseLogSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 828cab0b96564e079315db6e /* ExerciseLogSheetView.swift */; };
+		f77fb189634cfdcaa109ec1c /* CameraView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 72e0439b94f7bf39d1a5d376 /* CameraView.swift */; };
+		fe41159260b9dc45afd89d65 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2be8a6d2301d0a7fcc90781e /* APIClient.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		C7CE4A4DEF03A722437A9755 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4dc844abccfc0d132d087c1c /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42aefbae01d2dfd981f7da7d;
+			remoteInfo = CalAI;
 		};
-		"7fba8656fd9a46cd9a5f3b38" = {
-			"path" = "Views/Info/PreferencesPageView.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
+		E0E85B3530A6AAF8B4EB4795 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4dc844abccfc0d132d087c1c /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 42aefbae01d2dfd981f7da7d;
+			remoteInfo = CalAI;
 		};
-		"2a8b7c6d5e4f30192817a6b5" = {
-			"isa" = "PBXResourcesBuildPhase";
-			"buildActionMask" = "2147483647";
-			"files" = (
-				"0f9d8e4c7b6a5d3c2e1f9087",
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		05090384aa8a4d5b4cb11a20 /* CalAIApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalAIApp.swift; sourceTree = "<group>"; };
+		06681851e0c3b559ec392f2c /* ActionMenuSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Components/ActionMenuSheetView.swift; sourceTree = "<group>"; };
+		0df3952a6bc84f749ef7126d /* HealthKitSyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/HealthKitSyncService.swift; sourceTree = "<group>"; };
+		10A812C406F02B49F545C89B /* OfflineUITests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OfflineUITests.swift; sourceTree = "<group>"; };
+		10f265baffa868e4aa4f27de /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModels/HomeViewModel.swift; sourceTree = "<group>"; };
+		134B52D2AE38A4BF24463613 /* PrivacyInfo.xcprivacy */ = {isa = PBXFileReference; includeInIndex = 1; path = PrivacyInfo.xcprivacy; sourceTree = "<group>"; };
+		24a23cb39cab47d399dcb88a /* RecommendationsPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Info/RecommendationsPageView.swift; sourceTree = "<group>"; };
+		2733b9c39bc75b41354f2cb8 /* InfoPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Info/InfoPageView.swift; sourceTree = "<group>"; };
+		2A4F0A3AC6255B881F2ABC77 /* OfflineUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = OfflineUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2a78d18cab6f4bda9c4ed8e0 /* FastingPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Fasting/FastingPageView.swift; sourceTree = "<group>"; };
+		2be8a6d2301d0a7fcc90781e /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/APIClient.swift; sourceTree = "<group>"; };
+		2ef15b5d09f797c112dfbb6a /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Onboarding/OnboardingView.swift; sourceTree = "<group>"; };
+		3ac62fa4cb6e41ed916c20a8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		3c05e094536c92a1b8b3e170 /* BadgesPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Components/BadgesPageView.swift; sourceTree = "<group>"; };
+		413D2ABCA0284678EB7B6B1D /* AppFlowTests.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AppFlowTests.swift; sourceTree = "<group>"; };
+		41a3dfe45b1d44199631303c /* VoiceLogSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Logging/VoiceLogSheetView.swift; sourceTree = "<group>"; };
+		511c8fe6aa06cc5c6e4890cb /* HomePageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Home/HomePageView.swift; sourceTree = "<group>"; };
+		6B823CF8E2DF1C80580712D0 /* QwenService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = QwenService.swift; path = Services/QwenService.swift; sourceTree = "<group>"; };
+		6b37f8e2e08b4f7f8aa82000 /* RecipeMealType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeMealType.swift; sourceTree = "<group>"; };
+		6b52aa4e8d5a4b84bb2064bc /* FoodSearchSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Logging/FoodSearchSheetView.swift; sourceTree = "<group>"; };
+		72e0439b94f7bf39d1a5d376 /* CameraView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Camera/CameraView.swift; sourceTree = "<group>"; };
+		75c83417ba3b57bc68818478 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		7fba8656fd9a46cd9a5f3b38 /* PreferencesPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Info/PreferencesPageView.swift; sourceTree = "<group>"; };
+		828cab0b96564e079315db6e /* ExerciseLogSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Logging/ExerciseLogSheetView.swift; sourceTree = "<group>"; };
+		8f218e04004544d1a3d12af3 /* SleepLogSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Logging/SleepLogSheetView.swift; sourceTree = "<group>"; };
+		8f59757afb772301f3f7f8a2 /* MealGroupDetailPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Result/MealGroupDetailPageView.swift; sourceTree = "<group>"; };
+		927e34595fd93eb36bb384ee /* HistoryPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/History/HistoryPageView.swift; sourceTree = "<group>"; };
+		92e47eb28b2ca7d0aa1bf44e /* RecapPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Recap/RecapPageView.swift; sourceTree = "<group>"; };
+		950BA75F3419C1C1AE981A4A /* AppFlowTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AppFlowTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		99AB37D137AFFA5A5354BCE1 /* QwenSettingsView.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = QwenSettingsView.swift; path = Views/Info/QwenSettingsView.swift; sourceTree = "<group>"; };
+		9c0e75f0ab274b6ca2e30d41 /* CoachDrawerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Coach/CoachDrawerView.swift; sourceTree = "<group>"; };
+		9dd9c386c9f4dec670e8f09e /* ResultPageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Result/ResultPageView.swift; sourceTree = "<group>"; };
+		A73D6D7D30022A9B746A4562 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS18.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		E81AA04DAA9D916D32BDCB44 /* LocalMealImage.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LocalMealImage.swift; path = Views/Components/LocalMealImage.swift; sourceTree = "<group>"; };
+		EB381FB02FCE78FA00060B11 /* LightCal.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LightCal.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		F75E1B40A5938A6577DAA20F /* LocalDataStore.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LocalDataStore.swift; path = Local/LocalDataStore.swift; sourceTree = "<group>"; };
+		a2e8077f36a44369a3cc8a75 /* IngredientRecipeSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Info/IngredientRecipeSheetView.swift; sourceTree = "<group>"; };
+		a76071bb1ca643bb8326d010 /* DepthCaptureManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Services/DepthCaptureManager.swift; sourceTree = "<group>"; };
+		c38b2dbac3cf4ff9aebc8801 /* ManualLogSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Logging/ManualLogSheetView.swift; sourceTree = "<group>"; };
+		d879ec37a15241df9347b61a /* HealthSyncSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Info/HealthSyncSheetView.swift; sourceTree = "<group>"; };
+		f7a8c0a647a92d7b91ebafbe /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		fb1d9eef16456a07f994c1aa /* Components.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Views/Components/Components.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A1860E886401931B897D61AE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A879720C70CBCA88593CEBD1 /* Foundation.framework in Frameworks */,
 			);
-			"runOnlyForDeploymentPostprocessing" = "0";
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-		"2be8a6d2301d0a7fcc90781e" = {
-			"path" = "Services/APIClient.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
+		C58153DCA2443F3705493E6A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4D6188D140AFD24E00FA4C4E /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
 		};
-		"99e90219ddca003e38982e42" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "05090384aa8a4d5b4cb11a20";
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		0A394E895064D2A915A13FE4 /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				A73D6D7D30022A9B746A4562 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
 		};
-		"fb1d9eef16456a07f994c1aa" = {
-			"path" = "Views/Components/Components.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
+		2879AD2C0012ADF0910E5C1C /* AppFlowTests */ = {
+			isa = PBXGroup;
+			children = (
+				413D2ABCA0284678EB7B6B1D /* AppFlowTests.swift */,
+			);
+			name = AppFlowTests;
+			path = ../Tests/AppFlowTests;
+			sourceTree = "<group>";
 		};
-		"7ffc4d510260a8544e5550e6" = {
-			"isa" = "XCBuildConfiguration";
-			"buildSettings" = {
-				"CODE_SIGN_ENTITLEMENTS" = "CalAI/CalAI.entitlements";
-				"MARKETING_VERSION" = "26.27.0";
-				"ENABLE_DEBUG_DYLIB" = "NO";
-				"SUPPORTED_PLATFORMS" = "iphonesimulator iphoneos";
-				"PRODUCT_BUNDLE_IDENTIFIER" = "org.lightcal.app";
-				"CURRENT_PROJECT_VERSION" = "1931";
-				"INFOPLIST_KEY_CFBundleDisplayName" = "食光";
-				"TARGETED_DEVICE_FAMILY" = "1";
-				"CODE_SIGN_STYLE" = "Automatic";
-				"SDKROOT" = "iphoneos";
-				"LD_RUNPATH_SEARCH_PATHS" = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				"SWIFT_VERSION" = "5.0";
-				"INFOPLIST_KEY_NSPhotoLibraryUsageDescription" = "We need access to your photo library in order to select and save images.";
-				"PRODUCT_NAME" = "LightCal";
-				"IPHONEOS_DEPLOYMENT_TARGET" = "17.0";
-				"INFOPLIST_KEY_UISupportedInterfaceOrientations" = "UIInterfaceOrientationPortrait";
-				"ENABLE_PREVIEWS" = "YES";
-				"INFOPLIST_KEY_NSCameraUsageDescription" = "We need your camera in order to analyze your food";
-				"INFOPLIST_FILE" = "CalAI/Info.plist";
-				"GENERATE_INFOPLIST_FILE" = "NO";
-				"ALWAYS_SEARCH_USER_PATHS" = "NO";
+		2C288F6CF77A17585D5E7E62 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0A394E895064D2A915A13FE4 /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FCDE9B25D85C7C3ED050DD41 /* OfflineUITests */ = {
+			isa = PBXGroup;
+			children = (
+				10A812C406F02B49F545C89B /* OfflineUITests.swift */,
+			);
+			name = OfflineUITests;
+			path = ../Tests/OfflineUITests;
+			sourceTree = "<group>";
+		};
+		db0f6f37ebeb6ea094891243 = {
+			isa = PBXGroup;
+			children = (
+				3ac62fa4cb6e41ed916c20a8 /* Assets.xcassets */,
+				05090384aa8a4d5b4cb11a20 /* CalAIApp.swift */,
+				75c83417ba3b57bc68818478 /* ContentView.swift */,
+				f7a8c0a647a92d7b91ebafbe /* Models.swift */,
+				6b37f8e2e08b4f7f8aa82000 /* RecipeMealType.swift */,
+				2be8a6d2301d0a7fcc90781e /* APIClient.swift */,
+				a76071bb1ca643bb8326d010 /* DepthCaptureManager.swift */,
+				0df3952a6bc84f749ef7126d /* HealthKitSyncService.swift */,
+				10f265baffa868e4aa4f27de /* HomeViewModel.swift */,
+				72e0439b94f7bf39d1a5d376 /* CameraView.swift */,
+				9c0e75f0ab274b6ca2e30d41 /* CoachDrawerView.swift */,
+				06681851e0c3b559ec392f2c /* ActionMenuSheetView.swift */,
+				3c05e094536c92a1b8b3e170 /* BadgesPageView.swift */,
+				fb1d9eef16456a07f994c1aa /* Components.swift */,
+				2a78d18cab6f4bda9c4ed8e0 /* FastingPageView.swift */,
+				927e34595fd93eb36bb384ee /* HistoryPageView.swift */,
+				511c8fe6aa06cc5c6e4890cb /* HomePageView.swift */,
+				d879ec37a15241df9347b61a /* HealthSyncSheetView.swift */,
+				2733b9c39bc75b41354f2cb8 /* InfoPageView.swift */,
+				7fba8656fd9a46cd9a5f3b38 /* PreferencesPageView.swift */,
+				24a23cb39cab47d399dcb88a /* RecommendationsPageView.swift */,
+				a2e8077f36a44369a3cc8a75 /* IngredientRecipeSheetView.swift */,
+				828cab0b96564e079315db6e /* ExerciseLogSheetView.swift */,
+				6b52aa4e8d5a4b84bb2064bc /* FoodSearchSheetView.swift */,
+				c38b2dbac3cf4ff9aebc8801 /* ManualLogSheetView.swift */,
+				8f218e04004544d1a3d12af3 /* SleepLogSheetView.swift */,
+				41a3dfe45b1d44199631303c /* VoiceLogSheetView.swift */,
+				2ef15b5d09f797c112dfbb6a /* OnboardingView.swift */,
+				92e47eb28b2ca7d0aa1bf44e /* RecapPageView.swift */,
+				8f59757afb772301f3f7f8a2 /* MealGroupDetailPageView.swift */,
+				9dd9c386c9f4dec670e8f09e /* ResultPageView.swift */,
+				EB381FB02FCE78FA00060B11 /* LightCal.app */,
+				6B823CF8E2DF1C80580712D0 /* QwenService.swift */,
+				99AB37D137AFFA5A5354BCE1 /* QwenSettingsView.swift */,
+				E81AA04DAA9D916D32BDCB44 /* LocalMealImage.swift */,
+				F75E1B40A5938A6577DAA20F /* LocalDataStore.swift */,
+				134B52D2AE38A4BF24463613 /* PrivacyInfo.xcprivacy */,
+				950BA75F3419C1C1AE981A4A /* AppFlowTests.xctest */,
+				2C288F6CF77A17585D5E7E62 /* Frameworks */,
+				2879AD2C0012ADF0910E5C1C /* AppFlowTests */,
+				2A4F0A3AC6255B881F2ABC77 /* OfflineUITests.xctest */,
+				FCDE9B25D85C7C3ED050DD41 /* OfflineUITests */,
+			);
+			path = CalAI;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		42aefbae01d2dfd981f7da7d /* CalAI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9a0a3e1c7ba5dc779cc8b0f7 /* Build configuration list for PBXNativeTarget "CalAI" */;
+			buildPhases = (
+				7ee7184c970537ea83afe7f9 /* Sources */,
+				2a8b7c6d5e4f30192817a6b5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = CalAI;
+			productName = CalAI;
+			productReference = EB381FB02FCE78FA00060B11 /* LightCal.app */;
+			productType = "com.apple.product-type.application";
+		};
+		BAFA556386B94AE81B1944F9 /* OfflineUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F8047B274E466D5CEC75812F /* Build configuration list for PBXNativeTarget "OfflineUITests" */;
+			buildPhases = (
+				2386F99D17CC4370FF6CA4DD /* Sources */,
+				A1860E886401931B897D61AE /* Frameworks */,
+				93192B771A6C6D66A644084B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A482E2DB6366EB6EB9399E0A /* PBXTargetDependency */,
+			);
+			name = OfflineUITests;
+			productName = OfflineUITests;
+			productReference = 2A4F0A3AC6255B881F2ABC77 /* OfflineUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		EBE01DCA820C3F7D2FE2FF30 /* AppFlowTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 403B1015DE6143905C864255 /* Build configuration list for PBXNativeTarget "AppFlowTests" */;
+			buildPhases = (
+				AB494AC0E8F0D5CFAFB47AB5 /* Sources */,
+				C58153DCA2443F3705493E6A /* Frameworks */,
+				EF28AAB4D86E4FA86E26831B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4F07A81A4CEBA96F16640453 /* PBXTargetDependency */,
+			);
+			name = AppFlowTests;
+			productName = AppFlowTests;
+			productReference = 950BA75F3419C1C1AE981A4A /* AppFlowTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4dc844abccfc0d132d087c1c /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					BAFA556386B94AE81B1944F9 = {
+						TestTargetID = 42aefbae01d2dfd981f7da7d;
+					};
+					EBE01DCA820C3F7D2FE2FF30 = {
+						TestTargetID = 42aefbae01d2dfd981f7da7d;
+					};
+				};
 			};
-			"name" = "Release";
-		};
-		"2a78d18cab6f4bda9c4ed8e0" = {
-			"path" = "Views/Fasting/FastingPageView.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
-		};
-		"f7a8c0a647a92d7b91ebafbe" = {
-			"path" = "Models.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
-		};
-		"75c83417ba3b57bc68818478" = {
-			"path" = "ContentView.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
-		};
-		"6a1d23b7c9e04f8ab2d63c51" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "0df3952a6bc84f749ef7126d";
-		};
-		"c38b2dbac3cf4ff9aebc8801" = {
-			"path" = "Views/Logging/ManualLogSheetView.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
-		};
-		"6b37f8e2e08b4f7f8aa82000" = {
-			"path" = "RecipeMealType.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
-		};
-		"10f265baffa868e4aa4f27de" = {
-			"path" = "ViewModels/HomeViewModel.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
-		};
-		"24a23cb39cab47d399dcb88a" = {
-			"path" = "Views/Info/RecommendationsPageView.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
-		};
-		"068e7d407e833bb0138a4f64" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "2ef15b5d09f797c112dfbb6a";
-		};
-		"6b37f8e2e08b4f7f8aa82001" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "6b37f8e2e08b4f7f8aa82000";
-		};
-		"a06a3f34aac42f8bd17f7111" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "9dd9c386c9f4dec670e8f09e";
-		};
-		"f77fb189634cfdcaa109ec1c" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "72e0439b94f7bf39d1a5d376";
-		};
-		"8f218e04004544d1a3d12af3" = {
-			"path" = "Views/Logging/SleepLogSheetView.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
-		};
-		"828cab0b96564e079315db6e" = {
-			"path" = "Views/Logging/ExerciseLogSheetView.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
-		};
-		"7ea6eb12910bc965a04614fb" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "fb1d9eef16456a07f994c1aa";
-		};
-		"8f59757afb772301f3f7f8a2" = {
-			"path" = "Views/Result/MealGroupDetailPageView.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
-		};
-		"52e1bc4d8a7242fb8c52d9b1" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "6b52aa4e8d5a4b84bb2064bc";
-		};
-		"41a3dfe45b1d44199631303c" = {
-			"path" = "Views/Logging/VoiceLogSheetView.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
-		};
-		"9a0a3e1c7ba5dc779cc8b0f7" = {
-			"isa" = "XCConfigurationList";
-			"defaultConfigurationIsVisible" = "0";
-			"defaultConfigurationName" = "Release";
-			"buildConfigurations" = (
-				"b1da4861a4edf5615ec39f07",
-				"7ffc4d510260a8544e5550e6",
-			);
-		};
-		"7ee7184c970537ea83afe7f9" = {
-			"isa" = "PBXSourcesBuildPhase";
-			"buildActionMask" = "2147483647";
-			"files" = (
-				"99e90219ddca003e38982e42",
-				"c6a5aa1937c362efe96d3e28",
-				"825daa6cbba7190d7668cbf6",
-				"6b37f8e2e08b4f7f8aa82001",
-				"fe41159260b9dc45afd89d65",
-				"6f11dddc1061471980d76aa9",
-				"6a1d23b7c9e04f8ab2d63c51",
-				"ca59d2bb301ac22cd4de76d7",
-				"f77fb189634cfdcaa109ec1c",
-				"1d39bb621a6d4f7f8c4e2a11",
-				"36b267e33270f62954e64ab3",
-				"6176104c75f0bd609924f76a",
-				"7ea6eb12910bc965a04614fb",
-				"4d41fcf9576d43e2b1d8b779",
-				"db47635e579bb9f22ea802a9",
-				"998e1c63ac82ed66a9323e0d",
-				"9de107ba5c814d8f9e6a203b",
-				"499edc78e325937b2f496609",
-				"49f6df8c5a9e4529a5f26b71",
-				"4a3a9a7fc2d84150bfbec321",
-				"4ab6ce084d7c4d39a2c6fb72",
-				"e1d59659513a44f986833f5e",
-				"52e1bc4d8a7242fb8c52d9b1",
-				"4f1c49a95f784d23b54d728f",
-				"5cb53038134d4c2ab1497bfa",
-				"5b9fd0b8f7a0428ab2cf26aa",
-				"068e7d407e833bb0138a4f64",
-				"9bcdfbee09aae476a2f0ba84",
-				"b873f9e081790fd7df234a51",
-				"a06a3f34aac42f8bd17f7111",
-			);
-			"runOnlyForDeploymentPostprocessing" = "0";
-		};
-		"511c8fe6aa06cc5c6e4890cb" = {
-			"path" = "Views/Home/HomePageView.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
-		};
-		"3c05e094536c92a1b8b3e170" = {
-			"path" = "Views/Components/BadgesPageView.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
-		};
-		"db47635e579bb9f22ea802a9" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "927e34595fd93eb36bb384ee";
-		};
-		"a2501b56d7b8bb2dd22282d8" = {
-			"isa" = "XCConfigurationList";
-			"defaultConfigurationIsVisible" = "0";
-			"defaultConfigurationName" = "Release";
-			"buildConfigurations" = (
-				"b1da4861a4edf5615ec39f07",
-				"7ffc4d510260a8544e5550e6",
-			);
-		};
-		"06681851e0c3b559ec392f2c" = {
-			"path" = "Views/Components/ActionMenuSheetView.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
-		};
-		"b873f9e081790fd7df234a51" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "8f59757afb772301f3f7f8a2";
-		};
-		"b1da4861a4edf5615ec39f07" = {
-			"isa" = "XCBuildConfiguration";
-			"buildSettings" = {
-				"CODE_SIGN_ENTITLEMENTS" = "CalAI/CalAI.entitlements";
-				"MARKETING_VERSION" = "26.27.0";
-				"ENABLE_DEBUG_DYLIB" = "NO";
-				"SUPPORTED_PLATFORMS" = "iphonesimulator iphoneos";
-				"PRODUCT_BUNDLE_IDENTIFIER" = "org.lightcal.app";
-				"CURRENT_PROJECT_VERSION" = "1931";
-				"INFOPLIST_KEY_CFBundleDisplayName" = "食光";
-				"SWIFT_ACTIVE_COMPILATION_CONDITIONS" = "DEBUG $(inherited)";
-				"TARGETED_DEVICE_FAMILY" = "1";
-				"CODE_SIGN_STYLE" = "Automatic";
-				"SWIFT_OPTIMIZATION_LEVEL" = "-Onone";
-				"SDKROOT" = "iphoneos";
-				"LD_RUNPATH_SEARCH_PATHS" = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
-				"SWIFT_VERSION" = "5.0";
-				"INFOPLIST_KEY_NSPhotoLibraryUsageDescription" = "We need access to your photo library in order to select and save images.";
-				"PRODUCT_NAME" = "LightCal";
-				"IPHONEOS_DEPLOYMENT_TARGET" = "17.0";
-				"INFOPLIST_KEY_UISupportedInterfaceOrientations" = "UIInterfaceOrientationPortrait";
-				"ENABLE_PREVIEWS" = "YES";
-				"INFOPLIST_KEY_NSCameraUsageDescription" = "We need your camera in order to analyze your food";
-				"INFOPLIST_FILE" = "CalAI/Info.plist";
-				"GENERATE_INFOPLIST_FILE" = "NO";
-				"ALWAYS_SEARCH_USER_PATHS" = "NO";
-			};
-			"name" = "Debug";
-		};
-		"4f1c49a95f784d23b54d728f" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "c38b2dbac3cf4ff9aebc8801";
-		};
-		"92e47eb28b2ca7d0aa1bf44e" = {
-			"path" = "Views/Recap/RecapPageView.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
-		};
-		"36b267e33270f62954e64ab3" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "06681851e0c3b559ec392f2c";
-		};
-		"3ac62fa4cb6e41ed916c20a8" = {
-			"path" = "Assets.xcassets";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "folder.assetcatalog";
-			"sourceTree" = "<group>";
-		};
-		"6b52aa4e8d5a4b84bb2064bc" = {
-			"path" = "Views/Logging/FoodSearchSheetView.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
-		};
-		"a76071bb1ca643bb8326d010" = {
-			"path" = "Services/DepthCaptureManager.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
-		};
-		"ca59d2bb301ac22cd4de76d7" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "10f265baffa868e4aa4f27de";
-		};
-		"05090384aa8a4d5b4cb11a20" = {
-			"path" = "CalAIApp.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
-		};
-		"9bcdfbee09aae476a2f0ba84" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "92e47eb28b2ca7d0aa1bf44e";
-		};
-		"6f11dddc1061471980d76aa9" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "a76071bb1ca643bb8326d010";
-		};
-		"499edc78e325937b2f496609" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "2733b9c39bc75b41354f2cb8";
-		};
-		"fe41159260b9dc45afd89d65" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "2be8a6d2301d0a7fcc90781e";
-		};
-		"9dd9c386c9f4dec670e8f09e" = {
-			"path" = "Views/Result/ResultPageView.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
-		};
-		"2ef15b5d09f797c112dfbb6a" = {
-			"path" = "Views/Onboarding/OnboardingView.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
-		};
-		"0df3952a6bc84f749ef7126d" = {
-			"path" = "Services/HealthKitSyncService.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
-		};
-		"998e1c63ac82ed66a9323e0d" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "511c8fe6aa06cc5c6e4890cb";
-		};
-		"9de107ba5c814d8f9e6a203b" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "d879ec37a15241df9347b61a";
-		};
-		"2733b9c39bc75b41354f2cb8" = {
-			"path" = "Views/Info/InfoPageView.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
-		};
-		"42aefbae01d2dfd981f7da7d" = {
-			"productType" = "com.apple.product-type.application";
-			"productReference" = "EB381FB02FCE78FA00060B11";
-			"buildConfigurationList" = "9a0a3e1c7ba5dc779cc8b0f7";
-			"productName" = "CalAI";
-			"isa" = "PBXNativeTarget";
-			"buildPhases" = (
-				"7ee7184c970537ea83afe7f9",
-				"2a8b7c6d5e4f30192817a6b5",
-			);
-			"dependencies" = (
-			);
-			"name" = "CalAI";
-			"buildRules" = (
-			);
-		};
-		"49f6df8c5a9e4529a5f26b71" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "7fba8656fd9a46cd9a5f3b38";
-		};
-		"9c0e75f0ab274b6ca2e30d41" = {
-			"path" = "Views/Coach/CoachDrawerView.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
-		};
-		"4a3a9a7fc2d84150bfbec321" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "24a23cb39cab47d399dcb88a";
-		};
-		"1d39bb621a6d4f7f8c4e2a11" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "9c0e75f0ab274b6ca2e30d41";
-		};
-		"6176104c75f0bd609924f76a" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "3c05e094536c92a1b8b3e170";
-		};
-		"a2e8077f36a44369a3cc8a75" = {
-			"path" = "Views/Info/IngredientRecipeSheetView.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
-		};
-		"4dc844abccfc0d132d087c1c" = {
-			"buildConfigurationList" = "a2501b56d7b8bb2dd22282d8";
-			"targets" = (
-				"42aefbae01d2dfd981f7da7d",
-			);
-			"developmentRegion" = "en";
-			"knownRegions" = (
-				"en",
+			buildConfigurationList = a2501b56d7b8bb2dd22282d8 /* Build configuration list for PBXProject "CalAI" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
 				"zh-Hans",
-				"Base",
+				Base,
 			);
-			"isa" = "PBXProject";
-			"compatibilityVersion" = "Xcode 14.0";
-			"productRefGroup" = "db0f6f37ebeb6ea094891243";
-			"projectDirPath" = "";
-			"attributes" = {
-				"LastUpgradeCheck" = "1600";
-				"BuildIndependentTargetsInParallel" = "1";
+			mainGroup = db0f6f37ebeb6ea094891243;
+			productRefGroup = db0f6f37ebeb6ea094891243;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				42aefbae01d2dfd981f7da7d /* CalAI */,
+				EBE01DCA820C3F7D2FE2FF30 /* AppFlowTests */,
+				BAFA556386B94AE81B1944F9 /* OfflineUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2a8b7c6d5e4f30192817a6b5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				0f9d8e4c7b6a5d3c2e1f9087 /* Assets.xcassets in Resources */,
+				09DDB00F05CB71C3327B33EB /* PrivacyInfo.xcprivacy in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		93192B771A6C6D66A644084B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EF28AAB4D86E4FA86E26831B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2386F99D17CC4370FF6CA4DD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3F2A708F8C6AD7551CEFF8DD /* OfflineUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7ee7184c970537ea83afe7f9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				99e90219ddca003e38982e42 /* CalAIApp.swift in Sources */,
+				c6a5aa1937c362efe96d3e28 /* ContentView.swift in Sources */,
+				825daa6cbba7190d7668cbf6 /* Models.swift in Sources */,
+				6b37f8e2e08b4f7f8aa82001 /* RecipeMealType.swift in Sources */,
+				fe41159260b9dc45afd89d65 /* APIClient.swift in Sources */,
+				6f11dddc1061471980d76aa9 /* DepthCaptureManager.swift in Sources */,
+				6a1d23b7c9e04f8ab2d63c51 /* HealthKitSyncService.swift in Sources */,
+				ca59d2bb301ac22cd4de76d7 /* HomeViewModel.swift in Sources */,
+				f77fb189634cfdcaa109ec1c /* CameraView.swift in Sources */,
+				1d39bb621a6d4f7f8c4e2a11 /* CoachDrawerView.swift in Sources */,
+				36b267e33270f62954e64ab3 /* ActionMenuSheetView.swift in Sources */,
+				6176104c75f0bd609924f76a /* BadgesPageView.swift in Sources */,
+				7ea6eb12910bc965a04614fb /* Components.swift in Sources */,
+				4d41fcf9576d43e2b1d8b779 /* FastingPageView.swift in Sources */,
+				db47635e579bb9f22ea802a9 /* HistoryPageView.swift in Sources */,
+				998e1c63ac82ed66a9323e0d /* HomePageView.swift in Sources */,
+				9de107ba5c814d8f9e6a203b /* HealthSyncSheetView.swift in Sources */,
+				499edc78e325937b2f496609 /* InfoPageView.swift in Sources */,
+				49f6df8c5a9e4529a5f26b71 /* PreferencesPageView.swift in Sources */,
+				4a3a9a7fc2d84150bfbec321 /* RecommendationsPageView.swift in Sources */,
+				4ab6ce084d7c4d39a2c6fb72 /* IngredientRecipeSheetView.swift in Sources */,
+				e1d59659513a44f986833f5e /* ExerciseLogSheetView.swift in Sources */,
+				52e1bc4d8a7242fb8c52d9b1 /* FoodSearchSheetView.swift in Sources */,
+				4f1c49a95f784d23b54d728f /* ManualLogSheetView.swift in Sources */,
+				5cb53038134d4c2ab1497bfa /* SleepLogSheetView.swift in Sources */,
+				5b9fd0b8f7a0428ab2cf26aa /* VoiceLogSheetView.swift in Sources */,
+				068e7d407e833bb0138a4f64 /* OnboardingView.swift in Sources */,
+				9bcdfbee09aae476a2f0ba84 /* RecapPageView.swift in Sources */,
+				b873f9e081790fd7df234a51 /* MealGroupDetailPageView.swift in Sources */,
+				a06a3f34aac42f8bd17f7111 /* ResultPageView.swift in Sources */,
+				73AD7118261136D845A01099 /* QwenService.swift in Sources */,
+				3CF8EA15B254C89F42650C17 /* QwenSettingsView.swift in Sources */,
+				6C9BF1C1740AA839636E0E3B /* LocalMealImage.swift in Sources */,
+				E1C7ADE52597A38EEBF25672 /* LocalDataStore.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AB494AC0E8F0D5CFAFB47AB5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				03CE060810F4F772E08F6B3A /* AppFlowTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		4F07A81A4CEBA96F16640453 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CalAI;
+			target = 42aefbae01d2dfd981f7da7d /* CalAI */;
+			targetProxy = E0E85B3530A6AAF8B4EB4795 /* PBXContainerItemProxy */;
+		};
+		A482E2DB6366EB6EB9399E0A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = CalAI;
+			target = 42aefbae01d2dfd981f7da7d /* CalAI */;
+			targetProxy = C7CE4A4DEF03A722437A9755 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3B9C8C1FEAE420C6FFB511F6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.etheralia.lightcal.AppFlowTests;
+				PRODUCT_MODULE_NAME = AppFlowTests;
+				PRODUCT_NAME = AppFlowTests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LightCal.app/LightCal";
+				TEST_TARGET_NAME = CalAI;
+				VALIDATE_PRODUCT = YES;
 			};
-			"hasScannedForEncodings" = "0";
-			"projectRoot" = "";
-			"mainGroup" = "db0f6f37ebeb6ea094891243";
+			name = Release;
 		};
-		"db0f6f37ebeb6ea094891243" = {
-			"path" = "CalAI";
-			"isa" = "PBXGroup";
-			"children" = (
-				"3ac62fa4cb6e41ed916c20a8",
-				"05090384aa8a4d5b4cb11a20",
-				"75c83417ba3b57bc68818478",
-				"f7a8c0a647a92d7b91ebafbe",
-				"6b37f8e2e08b4f7f8aa82000",
-				"2be8a6d2301d0a7fcc90781e",
-				"a76071bb1ca643bb8326d010",
-				"0df3952a6bc84f749ef7126d",
-				"10f265baffa868e4aa4f27de",
-				"72e0439b94f7bf39d1a5d376",
-				"9c0e75f0ab274b6ca2e30d41",
-				"06681851e0c3b559ec392f2c",
-				"3c05e094536c92a1b8b3e170",
-				"fb1d9eef16456a07f994c1aa",
-				"2a78d18cab6f4bda9c4ed8e0",
-				"927e34595fd93eb36bb384ee",
-				"511c8fe6aa06cc5c6e4890cb",
-				"d879ec37a15241df9347b61a",
-				"2733b9c39bc75b41354f2cb8",
-				"7fba8656fd9a46cd9a5f3b38",
-				"24a23cb39cab47d399dcb88a",
-				"a2e8077f36a44369a3cc8a75",
-				"828cab0b96564e079315db6e",
-				"6b52aa4e8d5a4b84bb2064bc",
-				"c38b2dbac3cf4ff9aebc8801",
-				"8f218e04004544d1a3d12af3",
-				"41a3dfe45b1d44199631303c",
-				"2ef15b5d09f797c112dfbb6a",
-				"92e47eb28b2ca7d0aa1bf44e",
-				"8f59757afb772301f3f7f8a2",
-				"9dd9c386c9f4dec670e8f09e",
-				"EB381FB02FCE78FA00060B11",
+		6811601ACFB1BF89C3441787 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.etheralia.lightcal.OfflineUITests;
+				PRODUCT_MODULE_NAME = OfflineUITests;
+				PRODUCT_NAME = OfflineUITests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_TARGET_NAME = CalAI;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		7ffc4d510260a8544e5550e6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CalAI/CalAI.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				ENABLE_DEBUG_DYLIB = NO;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = CalAI/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "食光";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need your camera in order to analyze your food";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library in order to select and save images.";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.etheralia.lightcal;
+				PRODUCT_NAME = LightCal;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		DA9221DCA3CD26293752FCE5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.etheralia.lightcal.OfflineUITests;
+				PRODUCT_MODULE_NAME = OfflineUITests;
+				PRODUCT_NAME = OfflineUITests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_TARGET_NAME = CalAI;
+			};
+			name = Debug;
+		};
+		DD54612D1911F47F547FF2AD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "";
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = NO;
+				CODE_SIGN_ENTITLEMENTS = "";
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.etheralia.lightcal.AppFlowTests;
+				PRODUCT_MODULE_NAME = AppFlowTests;
+				PRODUCT_NAME = AppFlowTests;
+				SDKROOT = iphoneos;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LightCal.app/LightCal";
+				TEST_TARGET_NAME = CalAI;
+			};
+			name = Debug;
+		};
+		b1da4861a4edf5615ec39f07 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = CalAI/CalAI.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
+				ENABLE_DEBUG_DYLIB = NO;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_TESTABILITY = YES;
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = CalAI/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "食光";
+				INFOPLIST_KEY_NSCameraUsageDescription = "We need your camera in order to analyze your food";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "We need access to your photo library in order to select and save images.";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 0.2.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.etheralia.lightcal;
+				PRODUCT_NAME = LightCal;
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		403B1015DE6143905C864255 /* Build configuration list for PBXNativeTarget "AppFlowTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3B9C8C1FEAE420C6FFB511F6 /* Release */,
+				DD54612D1911F47F547FF2AD /* Debug */,
 			);
-			"sourceTree" = "<group>";
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		"e1d59659513a44f986833f5e" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "828cab0b96564e079315db6e";
+		9a0a3e1c7ba5dc779cc8b0f7 /* Build configuration list for PBXNativeTarget "CalAI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				b1da4861a4edf5615ec39f07 /* Debug */,
+				7ffc4d510260a8544e5550e6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		"72e0439b94f7bf39d1a5d376" = {
-			"path" = "Views/Camera/CameraView.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
+		F8047B274E466D5CEC75812F /* Build configuration list for PBXNativeTarget "OfflineUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				6811601ACFB1BF89C3441787 /* Release */,
+				DA9221DCA3CD26293752FCE5 /* Debug */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		"EB381FB02FCE78FA00060B11" = {
-			"path" = "LightCal.app";
-			"isa" = "PBXFileReference";
-			"includeInIndex" = "0";
-			"explicitFileType" = "wrapper.application";
-			"sourceTree" = "BUILT_PRODUCTS_DIR";
+		a2501b56d7b8bb2dd22282d8 /* Build configuration list for PBXProject "CalAI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				b1da4861a4edf5615ec39f07 /* Debug */,
+				7ffc4d510260a8544e5550e6 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
-		"c6a5aa1937c362efe96d3e28" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "75c83417ba3b57bc68818478";
-		};
-		"0f9d8e4c7b6a5d3c2e1f9087" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "3ac62fa4cb6e41ed916c20a8";
-		};
-		"825daa6cbba7190d7668cbf6" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "f7a8c0a647a92d7b91ebafbe";
-		};
-		"5cb53038134d4c2ab1497bfa" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "8f218e04004544d1a3d12af3";
-		};
-		"927e34595fd93eb36bb384ee" = {
-			"path" = "Views/History/HistoryPageView.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
-		};
-		"d879ec37a15241df9347b61a" = {
-			"path" = "Views/Info/HealthSyncSheetView.swift";
-			"isa" = "PBXFileReference";
-			"lastKnownFileType" = "sourcecode.swift";
-			"sourceTree" = "<group>";
-		};
-		"5b9fd0b8f7a0428ab2cf26aa" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "41a3dfe45b1d44199631303c";
-		};
-		"4ab6ce084d7c4d39a2c6fb72" = {
-			"isa" = "PBXBuildFile";
-			"fileRef" = "a2e8077f36a44369a3cc8a75";
-		};
+/* End XCConfigurationList section */
 	};
-	"rootObject" = "4dc844abccfc0d132d087c1c";
+	rootObject = 4dc844abccfc0d132d087c1c /* Project object */;
 }

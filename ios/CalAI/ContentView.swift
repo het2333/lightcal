@@ -104,14 +104,8 @@ struct ContentView: View {
                 }
 
                 if selectedTab == 2 {
-                    DiscoverPageView(
-                        onScanFood: {
-                            cameraSource = "image_scan"
-                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.15) {
-                                showCamera = true
-                            }
-                        }
-                    )
+                    CoachDrawerView(onClose: { selectedTab = 0 }, onChanged: { homeVM.refresh() })
+                        .padding(.bottom, 96)
                 }
 
                 if selectedTab == 3 {
@@ -474,18 +468,10 @@ struct ContentView: View {
             )
         }
         .fullScreenCover(isPresented: $showRecommendations) {
-            RecommendationsPageView(
-                initialDeliveryMode: recommendationsDeliveryMode,
-                initialDeliveryMealTypes: recommendationsDeliveryTypes,
-                onChanged: {
-                    homeVM.refresh(date: homeVM.selectedDate)
-                }
-            )
+            CoachDrawerView(onClose: { showRecommendations = false }, onChanged: { homeVM.refresh() })
         }
         .sheet(isPresented: $showIngredientRecipe) {
-            IngredientRecipeSheetView {
-                homeVM.refresh()
-            }
+            CoachDrawerView(onClose: { showIngredientRecipe = false }, onChanged: { homeVM.refresh() })
         }
         .sheet(isPresented: $showManualLog) {
             ManualLogSheetView(
@@ -627,7 +613,7 @@ struct ContentView: View {
             do {
                 let label = try await NutritionLabelOCR.analyze(imageBase64: capture.imageBase64)
                 analysisMessage = "正在判断适不适合今天吃"
-                let decision = try await APIClient.shared.scoreProductDecision(
+                let decision = try? await APIClient.shared.scoreProductDecision(
                     nutrition: label.nutrition,
                     names: [label.displayName],
                     date: homeVM.selectedDate,
@@ -1002,7 +988,7 @@ struct ContentView: View {
         showChefMenu = false
         switch action {
         case .mealPlan:
-            selectedTab = 3
+            showCoach = true
         case .delivery:
             recommendationsDeliveryMode = true
             recommendationsDeliveryTypes = ["正餐"]
@@ -1062,6 +1048,7 @@ private enum AnalysisRecoveryContext {
 }
 
 private func friendlyContentError(_ error: Error, fallback: String) -> String {
+    if let qwenError = error as? QwenError { return qwenError.localizedDescription }
     let raw = error.localizedDescription.trimmingCharacters(in: .whitespacesAndNewlines)
     guard !raw.isEmpty else { return fallback }
     let lower = raw.lowercased()
@@ -2217,6 +2204,7 @@ struct SettingsPageView: View {
     let onHealthSynced: () -> Void
     @StateObject private var healthService = HealthKitSyncService()
     @State private var showHealthSync = false
+    @State private var showQwenSettings = false
     @State private var showReminderSettings = false
     @State private var showPrivacySettings = false
     @State private var showDeleteAccount = false
@@ -2232,10 +2220,10 @@ struct SettingsPageView: View {
         ScrollView {
             VStack(spacing: 24) {
                 header
-                SettingsSection(title: "账户") {
+                SettingsSection(title: "本机与千问") {
                     SettingsRow(icon: "person.crop.circle", label: "个人资料与目标", action: onOpenOnboarding)
                     SettingsRow(icon: "fork.knife", label: "饮食偏好", action: onOpenPreferences)
-                    SettingsRow(icon: "person.2", label: "家庭与好友", isLast: true, action: onOpenFriends)
+                    SettingsRow(icon: "sparkles", label: "千问 API Key", value: "图片与聊天", isLast: true) { showQwenSettings = true }
                 }
                 SettingsSection(title: "同步与授权") {
                     SettingsRow(icon: "heart", label: "苹果健康", value: healthConnected ? "已同步" : "待同步") {
@@ -2256,7 +2244,7 @@ struct SettingsPageView: View {
                     SettingsRow(icon: "square.and.arrow.up", label: "导出我的数据", value: "JSON") {
                         Task { await exportAccountData() }
                     }
-                    SettingsRow(icon: "trash", label: "删除账户与记录", value: "不可恢复", isLast: true) {
+                    SettingsRow(icon: "trash", label: "删除本机记录", value: "不可恢复", isLast: true) {
                         showDeleteAccount = true
                     }
                 }
@@ -2272,6 +2260,7 @@ struct SettingsPageView: View {
             .padding(.bottom, 36)
         }
         .background(AppShellBackground())
+        .sheet(isPresented: $showQwenSettings) { QwenSettingsView() }
         .sheet(isPresented: $showHealthSync) {
             HealthSyncSheetView(
                 service: healthService,
@@ -2383,9 +2372,10 @@ struct SettingsPageView: View {
     private func deleteAccountData() async {
         do {
             _ = try await APIClient.shared.deleteAccountData()
+            try QwenCredentials.delete()
             UserDefaults.standard.removeObject(forKey: "onboarded")
             UserDefaults.standard.removeObject(forKey: "profile_avatar_base64")
-            accountMessage = "账户记录已删除。重新设置目标后可以继续使用。"
+            accountMessage = "本机记录和千问密钥已删除。重新设置目标后可以继续使用。"
             showDeleteAccount = false
             onOpenOnboarding()
         } catch {
@@ -2460,7 +2450,7 @@ private struct PrivacyAuthorizationSheet: View {
                     VStack(alignment: .leading, spacing: 4) {
                         Text("用于个性化建议")
                             .font(.system(size: 15, weight: .black))
-                        Text("只使用你的饮食和目标生成建议，不用于公开发布")
+                        Text("记录仅保存在本机。是否将记录发送给千问，请在千问设置中单独选择")
                             .font(.system(size: 12, weight: .bold))
                             .foregroundStyle(.secondary)
                     }
@@ -2473,7 +2463,7 @@ private struct PrivacyAuthorizationSheet: View {
                 permissionRow(
                     icon: "person.2.slash.fill",
                     title: "公开分享",
-                    detail: "默认关闭。发布范围和图片信息确认流程完善前不会开放。",
+                    detail: "本机版不提供好友动态或公开发布。你可通过系统分享自行导出。",
                     trailing: "已关闭",
                     action: nil
                 )
@@ -2930,9 +2920,9 @@ private struct LightweightProfilePageView: View {
 
                 profileSection(title: "数据与隐私") {
                     profileRow(icon: "heart.fill", title: "健康同步", subtitle: "需要同步时再授权 Apple 健康", tint: Color(hex: "FF5B6B"), action: onOpenSettings)
-                    profileRow(icon: "hand.raised.fill", title: "数据隐私", subtitle: "查看授权范围和公开分享状态", tint: Color(hex: "7C5CFC"), action: onOpenSettings)
+                    profileRow(icon: "hand.raised.fill", title: "数据隐私", subtitle: "本机存储、健康授权与千问数据发送", tint: Color(hex: "7C5CFC"), action: onOpenSettings)
                     profileRow(icon: "square.and.arrow.up", title: "导出我的数据", subtitle: "下载饮食、体重、饮水和目标记录", tint: Color(hex: "159BFF"), action: onOpenSettings)
-                    profileRow(icon: "gearshape.fill", title: "设置", subtitle: "提醒、数据管理与账户", action: onOpenSettings)
+                    profileRow(icon: "gearshape.fill", title: "设置", subtitle: "千问 API Key、提醒和本机数据", action: onOpenSettings)
                 }
 
                 Text("食光")
@@ -3465,7 +3455,7 @@ struct PremiumBottomNav: View {
     private let items: [(Int, String, String)] = [
         (0, "首页", "house"),
         (1, "记录", "list.clipboard"),
-        (2, "发现", "safari"),
+        (2, "千问", "message"),
         (3, "我的", "person.crop.circle"),
     ]
 

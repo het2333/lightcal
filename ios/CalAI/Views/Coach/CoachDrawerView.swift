@@ -8,18 +8,19 @@ struct CoachDrawerView: View {
         CoachMessage(
             id: "welcome",
             role: "assistant",
-            content: "问一句就行。我会按今天记录，直接告诉你下一餐怎么吃、缺什么、怎么补回来。",
+            content: "我是千问饮食助手。你可以问下一餐怎么吃，也可以在千问设置中开启结合本机记录。建议仅供参考，不能替代医疗建议。",
             payload: nil
         )
     ]
     @State private var input = ""
+    @State private var showQwenSettings = false
     @State private var loading = false
     @State private var error = ""
     @State private var loggingId = ""
     @State private var applyingId = ""
     @State private var latestTools: [String] = []
 
-    private let prompts = ["晚餐怎么吃不超？", "蛋白还差什么？", "上周饮食怎么样？", "最近7天体重和运动怎么样？"]
+    private let prompts = ["晚餐怎么吃不超？", "蛋白还差什么？", "最近7天饮食怎么样？", "最近7天体重和运动怎么样？"]
 
     private var primaryCoachPrompt: String {
         if latestRecommendations.isEmpty && latestActions.isEmpty {
@@ -43,6 +44,11 @@ struct CoachDrawerView: View {
     var body: some View {
         VStack(spacing: 0) {
             header
+            Button { showQwenSettings = true } label: {
+                Label("千问设置 · 使用自己的 API Key", systemImage: "key.fill")
+                    .font(.footnote.weight(.semibold)).padding(.vertical, 10)
+            }
+            .accessibilityIdentifier("coach.qwenSettings")
             coachHero
             promptScroller
             ScrollView {
@@ -65,6 +71,7 @@ struct CoachDrawerView: View {
             composer
         }
         .background(AppShellBackground())
+        .sheet(isPresented: $showQwenSettings) { QwenSettingsView() }
     }
 
     private var coachHero: some View {
@@ -79,17 +86,17 @@ struct CoachDrawerView: View {
                     .accessibilityHidden(true)
 
                 VStack(alignment: .leading, spacing: 5) {
-                    Text("下一餐怎么吃")
+                    Text("千问饮食助手")
                         .font(.system(size: 22, weight: .black))
                         .foregroundStyle(.white)
-                    Text("不用看数据，点一下直接出方案")
+                    Text("按你的问题，给出可执行的饮食建议")
                         .font(.system(size: 12, weight: .bold))
                         .foregroundStyle(.white.opacity(0.66))
                         .lineLimit(1)
                         .minimumScaleFactor(0.76)
                     HStack(spacing: 8) {
-                        coachHeroPill(latestRecommendations.isEmpty ? "可保存到今天" : "\(latestRecommendations.count) 个可记录方案")
-                        coachHeroPill(latestTools.isEmpty ? (latestActions.isEmpty ? "可补救超标" : "\(latestActions.count) 个一键调整") : "已查 \(latestTools.count) 类记录")
+                        coachHeroPill("通义千问")
+                        coachHeroPill(latestTools.isEmpty ? "按对话回答" : "已结合本机记录")
                     }
                 }
                 Spacer(minLength: 0)
@@ -380,7 +387,7 @@ struct CoachDrawerView: View {
         loading = true
         defer { loading = false }
         do {
-            let response = try await APIClient.shared.chatCoach(message: clean)
+            let response = try await APIClient.shared.chatCoach(message: clean, history: Array(messages.dropLast()))
             latestTools = response.toolsUsed ?? []
             if let serverMessages = response.messages, !serverMessages.isEmpty {
                 messages = serverMessages
@@ -451,6 +458,7 @@ struct CoachDrawerView: View {
     }
 
     private func friendlyCoachError(_ error: Error, fallback: String) -> String {
+        if let qwenError = error as? QwenError { return qwenError.localizedDescription }
         let raw = error.localizedDescription.trimmingCharacters(in: .whitespacesAndNewlines)
         let lowercased = raw.lowercased()
         if isConnectionFailureMessage(raw) {

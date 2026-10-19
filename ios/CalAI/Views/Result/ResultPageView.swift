@@ -862,10 +862,6 @@ struct ResultPageView: View {
         defer { isSaving = false }
         do {
             let replaceGroupId = savedUploadGroupIdForReplace.trimmingCharacters(in: .whitespacesAndNewlines)
-            if !replaceGroupId.isEmpty, !replaceGroupId.hasPrefix("single-") {
-                _ = try await APIClient.shared.deleteFoodLogs(uploadGroupId: replaceGroupId)
-                try? await HealthKitSyncService.shared.deleteMeal(groupId: replaceGroupId)
-            }
             let foodsToSave = consumedFoods.map { food -> FoodItem in
                 var item = food
                 if !logDate.isEmpty {
@@ -878,8 +874,12 @@ struct ResultPageView: View {
                 mealCategory: "",
                 groupTitle: title,
                 imageBase64: imageBase64 ?? "",
-                date: logDate
+                date: logDate,
+                replacingGroupId: replaceGroupId
             )
+            if !replaceGroupId.isEmpty, !replaceGroupId.hasPrefix("single-") {
+                try? await HealthKitSyncService.shared.deleteMeal(groupId: replaceGroupId)
+            }
             try await confirmDepthDraftIfNeeded()
             onSaved(response.decision?.nextAdjustment)
             let groupId = response.foods?.compactMap { $0.uploadGroupId }.first?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""

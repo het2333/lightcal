@@ -7,6 +7,7 @@ struct CameraView: View {
     let source: String
     let onCapture: (MealCapture) -> Void
     @Environment(\.dismiss) var dismiss
+    @State private var showQwenSettings = false
     @State private var showPicker = false
     @State private var showAuxiliaryPicker = false
     @State private var activeSource: String
@@ -73,7 +74,7 @@ struct CameraView: View {
                     onRetry: {
                         camera.requestAccessAndConfigure(
                             barcodeMode: activeSource == "barcode_camera",
-                            depthCaptureMode: activeSource == "image_scan"
+                            depthCaptureMode: false
                         )
                     },
                     onUpload: {
@@ -105,6 +106,9 @@ struct CameraView: View {
 
                         Spacer()
 
+                        Button { showQwenSettings = true } label: {
+                            Image(systemName: "key.fill").foregroundStyle(.white).padding(12).background(.black.opacity(0.4)).clipShape(Circle())
+                        }.accessibilityLabel("千问设置")
                         topModeBadge
                     }
                     .padding(.horizontal, 20)
@@ -270,6 +274,7 @@ struct CameraView: View {
                 }
             }
         }
+        .sheet(isPresented: $showQwenSettings) { QwenSettingsView() }
         .onAppear {
             camera.onCapture = { capture in
                 var metadata = capture.captureMetadata
@@ -302,13 +307,13 @@ struct CameraView: View {
             }
             camera.requestAccessAndConfigure(
                 barcodeMode: activeSource == "barcode_camera",
-                depthCaptureMode: activeSource == "image_scan"
+                depthCaptureMode: false
             )
         }
         .onChange(of: activeSource) { _, newSource in
             camera.requestAccessAndConfigure(
                 barcodeMode: newSource == "barcode_camera",
-                depthCaptureMode: newSource == "image_scan"
+                depthCaptureMode: false
             )
         }
         .onDisappear {
@@ -365,7 +370,7 @@ struct CameraView: View {
             Image(systemName: activeSource == "barcode_camera" ? "barcode.viewfinder" : activeSource == "label_scan" ? "list.clipboard" : "viewfinder")
                 .font(.system(size: 11, weight: .black))
                 .accessibilityHidden(true)
-            Text(activeSource == "barcode_camera" ? "对准条码" : activeSource == "label_scan" ? "拍营养表" : friendlyDepthStatus(camera.depthStatusText, supported: camera.depthSupported, captured: camera.lastDepthSummary != nil))
+            Text(activeSource == "barcode_camera" ? "对准条码" : activeSource == "label_scan" ? "拍营养表" : "千问识别 · 请确认估算份量")
                 .font(.system(size: 11, weight: .black))
         }
         .foregroundStyle(.white)
@@ -433,7 +438,7 @@ struct CameraView: View {
         pendingCapture = nil
         camera.requestAccessAndConfigure(
             barcodeMode: activeSource == "barcode_camera",
-            depthCaptureMode: activeSource == "image_scan"
+            depthCaptureMode: false
         )
     }
 
@@ -1038,7 +1043,7 @@ final class FoodCameraModel: NSObject, ObservableObject, AVCapturePhotoCaptureDe
     private func captureAVFoundationDepthPhoto() {
         let settings = AVCapturePhotoSettings()
         settings.photoQualityPrioritization = .quality
-        if photoOutput.isDepthDataDeliverySupported {
+        if depthCaptureMode && photoOutput.isDepthDataDeliverySupported {
             settings.isDepthDataDeliveryEnabled = true
         }
         sessionQueue.async {
@@ -1113,6 +1118,16 @@ final class FoodCameraModel: NSObject, ObservableObject, AVCapturePhotoCaptureDe
         guard error == nil, let data = photo.fileDataRepresentation() else {
             DispatchQueue.main.async {
                 self.configurationError = "这次没有拍成功。稳住手机再拍；赶时间也可以手动记。"
+            }
+            return
+        }
+
+        if !depthCaptureMode {
+            DispatchQueue.main.async {
+                self.lastDepthSummary = nil
+                self.depthStatusText = "千问图片识别"
+                self.onCapture?(MealCapture(imageBase64: data.base64EncodedString(), depthMetadata: nil,
+                    captureMetadata: ["source": "image_scan", "has_depth": false, "capture_pipeline": "qwen_direct"]))
             }
             return
         }

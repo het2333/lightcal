@@ -675,7 +675,7 @@ private struct CommunityPostCard: View {
             }
 
             if !post.isCheckin, let url = APIClient.shared.assetURL(post.imageUrl), !post.imageUrlText.isEmpty {
-                AsyncImage(url: url) { phase in
+                LocalMealImage(url: url) { phase in
                     switch phase {
                     case .success(let image):
                         image.resizable().scaledToFill()
@@ -1756,7 +1756,7 @@ private func labelIcon(_ icon: String, _ text: String) -> some View {
 private func mealImage(post: CommunityPost, fallback: String) -> some View {
     Group {
         if let url = APIClient.shared.assetURL(post.imageUrl), !post.imageUrlText.isEmpty {
-            AsyncImage(url: url) { phase in
+            LocalMealImage(url: url) { phase in
                 switch phase {
                 case .success(let image):
                     image.resizable().scaledToFill()

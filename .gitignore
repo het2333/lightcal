@@ -46,3 +46,8 @@ DerivedData/
 xcuserdata/
 *.xcuserstate
 *.xcarchive
+
+# Swift Package Manager
+.build/
+.swiftpm/
+*.xcresult

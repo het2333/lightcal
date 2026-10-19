@@ -6053,7 +6053,7 @@ struct InfoPageView: View {
         let expanded = expandedRecentGroupId == group.id
         return VStack(spacing: 10) {
             HStack(spacing: 12) {
-                AsyncImage(url: group.imageUrl) { phase in
+                LocalMealImage(url: group.imageUrl) { phase in
                     switch phase {
                     case .success(let image):
                         image.resizable().scaledToFill()
@@ -7636,7 +7636,7 @@ struct InfoPageView: View {
             }
 
             if let coverURL {
-                AsyncImage(url: coverURL) { phase in
+                LocalMealImage(url: coverURL) { phase in
                     switch phase {
                     case .success(let image):
                         image
@@ -12013,7 +12013,7 @@ private struct MealPlanRecipeCollectionCard: View {
             RoundedRectangle(cornerRadius: 14, style: .continuous)
                 .fill(Color(hex: "EEF2FF"))
             if let imageURL {
-                AsyncImage(url: imageURL) { phase in
+                LocalMealImage(url: imageURL) { phase in
                     switch phase {
                     case .success(let image):
                         image
@@ -15373,7 +15373,7 @@ private struct SavedMealDetailSheetView: View {
     }
 
     private func mealCoverHero(_ url: URL) -> some View {
-        AsyncImage(url: url) { phase in
+        LocalMealImage(url: url) { phase in
             ZStack(alignment: .bottomLeading) {
                 RoundedRectangle(cornerRadius: 28, style: .continuous)
                     .fill(Color(hex: "F7F8FA"))
@@ -17210,7 +17210,7 @@ private struct SavedRecipeDetailSheetView: View {
     }
 
     private func recipeCoverHero(_ url: URL) -> some View {
-        AsyncImage(url: url) { phase in
+        LocalMealImage(url: url) { phase in
             ZStack(alignment: .bottomLeading) {
                 switch phase {
                 case .success(let image):

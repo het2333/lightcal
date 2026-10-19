@@ -4,10 +4,12 @@ import UIKit
 
 class APIClient {
     static let shared = APIClient()
-    static let apiOverrideDefaultsKey = "APIBaseURLOverride"
-    private static let defaultBaseURL = "http://127.0.0.1:8001/v6"
+    // URLRequest remains an internal command format; these URLs never go on the network.
+    private static let defaultBaseURL = "lightcal://local/v6"
     private static let pendingFoodLogRequestsDefaultsKey = "PendingFoodLogRequestIDs"
     private static let pendingMutationRequestsDefaultsKey = "PendingMutationRequestIDs"
+    private let localStore: LocalDataStore
+    init(localStore: LocalDataStore = .shared) { self.localStore = localStore }
     private let pendingFoodLogLock = NSLock()
     private let pendingMutationLock = NSLock()
 
@@ -21,140 +23,7 @@ class APIClient {
     }
 
     private var base: String {
-        Self.resolvedBaseURL()
-    }
-
-    static func bundledBaseURL() -> String {
-        (Bundle.main.object(forInfoDictionaryKey: "APIBaseURL") as? String) ?? defaultBaseURL
-    }
-
-    static func resolvedBaseURL() -> String {
-        let bundled = normalizeBaseURL(bundledBaseURL())
-        #if DEBUG
-        let debugOverride = UserDefaults.standard.string(forKey: apiOverrideDefaultsKey) ?? ""
-        if !debugOverride.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
-            return normalizeBaseURL(debugOverride)
-        }
-        #endif
-        let override = UserDefaults.standard.string(forKey: apiOverrideDefaultsKey) ?? ""
-        if isStaleLocalOverride(override) {
-            UserDefaults.standard.removeObject(forKey: apiOverrideDefaultsKey)
-            return bundled
-        }
-        return normalizeBaseURL(override.isEmpty ? bundled : override)
-    }
-
-    static func normalizeBaseURL(_ value: String) -> String {
-        var clean = value.trimmingCharacters(in: .whitespacesAndNewlines)
-        while clean.hasSuffix("/") {
-            clean.removeLast()
-        }
-        if clean.isEmpty {
-            return bundledBaseURL()
-        }
-        while true {
-            let lower = clean.lowercased()
-            if lower.hasSuffix("/v6") || lower.hasSuffix("/v1") {
-                clean = String(clean.dropLast(3))
-                while clean.hasSuffix("/") {
-                    clean.removeLast()
-                }
-            } else {
-                break
-            }
-        }
-        return clean + "/v6"
-    }
-
-    private static func isStaleLocalOverride(_ value: String) -> Bool {
-        let raw = value.trimmingCharacters(in: .whitespacesAndNewlines)
-        guard !raw.isEmpty else { return false }
-        let normalized = normalizeBaseURL(value).lowercased()
-        guard let url = URL(string: normalized),
-              let host = url.host?.lowercased()
-        else {
-            return false
-        }
-        if url.port == 8001 || url.port == 8003 {
-            return true
-        }
-        if host == "localhost" || host == "127.0.0.1" || host.hasPrefix("192.168.") || host.hasPrefix("10.") {
-            return true
-        }
-        let parts = host.split(separator: ".").compactMap { Int($0) }
-        if parts.count == 4, parts[0] == 172, (16...31).contains(parts[1]) {
-            return true
-        }
-        return false
-    }
-
-    static func setBaseURLOverride(_ value: String) {
-        let clean = value.trimmingCharacters(in: .whitespacesAndNewlines)
-        #if DEBUG
-        if clean.isEmpty {
-            UserDefaults.standard.removeObject(forKey: apiOverrideDefaultsKey)
-        } else {
-            UserDefaults.standard.set(normalizeBaseURL(clean), forKey: apiOverrideDefaultsKey)
-        }
-        #else
-        if clean.isEmpty || isStaleLocalOverride(clean) {
-            UserDefaults.standard.removeObject(forKey: apiOverrideDefaultsKey)
-        } else {
-            UserDefaults.standard.set(normalizeBaseURL(clean), forKey: apiOverrideDefaultsKey)
-        }
-        #endif
-    }
-
-    @discardableResult
-    static func checkConnection(to value: String) async throws -> Int {
-        let targetBase = normalizeBaseURL(value)
-        guard let url = URL(string: targetBase + "/daily-summary") else {
-            throw APIError.server("地址格式不对")
-        }
-
-        var req = URLRequest(url: url)
-        req.httpMethod = "GET"
-        req.setValue("application/json", forHTTPHeaderField: "Accept")
-        req.timeoutInterval = 8
-
-        let v6Status: Int
-        do {
-            let (_, response) = try await URLSession.shared.data(for: req)
-            guard let http = response as? HTTPURLResponse else {
-                throw APIError.server("这个地址暂时没响应")
-            }
-            guard (200..<300).contains(http.statusCode) else {
-                throw APIError.server("这个地址暂时不能用：HTTP \(http.statusCode)")
-            }
-            v6Status = http.statusCode
-        } catch let error as URLError {
-            throw APIError.connection(base: targetBase, code: error.code)
-        }
-
-        let depthBase = String(targetBase.dropLast(3)) + "/v1"
-        guard let depthURL = URL(string: depthBase + "/health") else {
-            throw APIError.server("拍照地址格式不对")
-        }
-        var depthReq = URLRequest(url: depthURL)
-        depthReq.httpMethod = "GET"
-        depthReq.setValue("application/json", forHTTPHeaderField: "Accept")
-        depthReq.timeoutInterval = 8
-        do {
-            let (data, response) = try await URLSession.shared.data(for: depthReq)
-            guard let http = response as? HTTPURLResponse else {
-                throw APIError.server("拍照地址暂时没响应")
-            }
-            guard (200..<300).contains(http.statusCode) else {
-                throw APIError.server("扫描食物还没准备好：HTTP \(http.statusCode)")
-            }
-            // Connection check should answer only one question: can the app reach
-            // the backend. Cloud vision readiness is handled by the camera flow so
-            // a temporary GPU/model warm-up does not make the whole app look offline.
-            _ = data
-        } catch let error as URLError {
-            throw APIError.connection(base: depthBase, code: error.code)
-        }
-        return v6Status
+        Self.defaultBaseURL
     }
 
     private var assetBase: String {
@@ -797,7 +666,7 @@ class APIClient {
 
     func assetURL(_ path: String?) -> URL? {
         guard let path, !path.isEmpty else { return nil }
-        if path.hasPrefix("http://") || path.hasPrefix("https://") {
+        if path.hasPrefix("file://") || path.hasPrefix("data:") {
             return URL(string: path)
         }
         let normalized = path.hasPrefix("/") ? path : "/\(path)"
@@ -866,12 +735,18 @@ class APIClient {
         )
     }
     func describeTextMeal(_ text: String) async throws -> DescribeMealResponse {
-        try await post("/describeMeal", json: [
-            "source": "manually",
-            "text": text,
-        ])
+        let meal = try await QwenCredentials.service().analyzeText(text)
+        return DescribeMealResponse(foods: Self.qwenFoodItems(meal), healthScore: nil, description: meal.description, decision: nil)
     }
 
+    private static func qwenFoodItems(_ meal: QwenMeal) -> [FoodItem] {
+        meal.foods.map { item in
+            FoodItem(name: item.name, calories: item.calories, protein: item.protein, carbs: item.carbs,
+                     fat: item.fat, fiber: item.fiber, sugar: item.sugar, sodium: item.sodium,
+                     servingSize: "\(Int(item.grams.rounded()))g（估算）", gramsPerUnit: item.grams,
+                     nutritionSource: "千问估算")
+        }
+    }
     func addWater(ml: Double) async throws {
         var payload: [String: Any] = ["amount_ml": ml, "date": Self.todayDateString()]
         let pending = pendingMutationRequest(operation: "water", payload: payload)
@@ -1017,7 +892,8 @@ class APIClient {
         mealCategory: String = "",
         groupTitle: String = "",
         imageBase64: String = "",
-        date: String = ""
+        date: String = "",
+        replacingGroupId: String = ""
     ) async throws -> FoodLogSaveResponse {
         let foodsPayload = foods.map { foodPayload($0) }
         var payload: [String: Any] = [
@@ -1026,7 +902,12 @@ class APIClient {
             "group_title": groupTitle,
         ]
         if !imageBase64.isEmpty {
-            payload["image_base64"] = imageBase64
+            payload["image_base64"] = try Self.preparedMealImage(imageBase64)
+        }
+        if replacingGroupId.hasPrefix("single-"), let id = Int(replacingGroupId.dropFirst(7)) {
+            payload["replace_ids"] = [id]
+        } else if !replacingGroupId.isEmpty {
+            payload["replace_group_id"] = replacingGroupId
         }
         payload["date"] = date.isEmpty ? Self.todayDateString() : date
         let fingerprint = foodLogPayloadFingerprint(payload)
@@ -1332,9 +1213,15 @@ class APIClient {
         ])
     }
     func parseVoiceLog(text: String, date: String = "") async throws -> VoiceLogParseResponse {
-        var payload: [String: Any] = ["text": text]
-        if !date.isEmpty { payload["date"] = date }
-        return try await post("/voice-log/parse", json: payload)
+        let meal = try await QwenCredentials.service().analyzeText(text)
+        let foods = Self.qwenFoodItems(meal).map { food -> VoiceParsedFood in
+            var parsed = VoiceParsedFood()
+            parsed.name = food.name; parsed.calories = food.calories; parsed.protein = food.protein
+            parsed.carbs = food.carbs; parsed.fat = food.fat; parsed.fiber = food.fiber
+            parsed.sugar = food.sugar; parsed.sodium = food.sodium; parsed.servingSize = food.servingSize
+            return parsed
+        }
+        return VoiceLogParseResponse(rawText: text, date: date, source: "qwen", confidence: nil, mealCategory: nil, foods: foods, hydration: [])
     }
     func applyVoiceLog(
         text: String,
@@ -1542,12 +1429,41 @@ class APIClient {
             "meal_category": mealCategory,
         ])
     }
-    func chatCoach(message: String, mealType: String = "") async throws -> CoachChatResponse {
-        var payload: [String: Any] = ["message": message]
-        if !mealType.isEmpty {
-            payload["meal_type"] = mealType
+    func chatCoach(message: String, mealType: String = "", history: [CoachMessage] = []) async throws -> CoachChatResponse {
+        let service = try QwenCredentials.service()
+        var context: String?
+        if service.configuration.shareNutritionContext {
+            let summary = try await getDailySummary()
+            let foods = try await getFoods(days: 7)
+            let weights = try await getWeights(days: 7)
+            let preferences = try await getUserPreferences()
+            let hydration = try await getHydration(days: 7)
+            var exerciseHistory = [ExerciseEntry]()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            formatter.locale = Locale(identifier: "en_US_POSIX")
+            for offset in 0..<7 {
+                let day = Calendar.current.date(byAdding: .day, value: -offset, to: Date())!
+                exerciseHistory += try await getExercises(date: formatter.string(from: day))
+            }
+            let foodContext: [[String: Any]] = foods.map {
+                ["date": $0.date ?? "", "name": $0.foodName ?? "", "calories": $0.calories ?? 0,
+                 "protein": $0.protein ?? 0, "carbs": $0.carbs ?? 0, "fat": $0.fat ?? 0]
+            }
+            let payload: [String: Any] = [
+                "today": try JSONSerialization.jsonObject(with: JSONEncoder().encode(summary)),
+                "recent_foods": foodContext,
+                "recent_weights": try JSONSerialization.jsonObject(with: JSONEncoder().encode(weights)),
+                "recent_hydration": try JSONSerialization.jsonObject(with: JSONEncoder().encode(hydration)),
+                "recent_exercises": try JSONSerialization.jsonObject(with: JSONEncoder().encode(exerciseHistory)),
+                "preferences": try JSONSerialization.jsonObject(with: JSONEncoder().encode(preferences)),
+                "note": "仅包含本机最近7天记录，空列表表示没有记录。"
+            ]
+            context = String(data: try JSONSerialization.data(withJSONObject: payload), encoding: .utf8)
         }
-        return try await post("/coach/chat", json: payload)
+        let turns = history.filter { $0.id != "welcome" }.map { QwenTurn(role: $0.role, content: $0.content) }
+        let reply = try await service.chat(message: message, history: turns, context: context)
+        return CoachChatResponse(reply: reply, actions: [], recommendations: [], messages: nil, toolsUsed: context == nil ? [] : ["query_food_logs", "query_weight_logs"])
     }
     func applyCoachAction(_ action: CoachAction) async throws -> CoachApplyResponse {
         var actionPayload: [String: Any] = [
@@ -1822,10 +1738,6 @@ class APIClient {
     }
 
     func describeMealGet(capture: MealCapture) async throws -> DescribeMealResponse {
-        if capture.depthBundle != nil {
-            try await requireGPUVisionPipeline()
-            return try await analyzeDepthBundleAsDescribeMeal(capture: capture)
-        }
         return try await analyzeVisionImageAsDescribeMeal(capture: capture)
     }
 
@@ -1833,10 +1745,6 @@ class APIClient {
         capture: MealCapture,
         onEvent: @escaping ([String: Any]) -> Void
     ) async throws -> DescribeMealResponse {
-        if capture.depthBundle != nil {
-            try await requireGPUVisionPipeline()
-            return try await analyzeDepthBundleAsDescribeMeal(capture: capture, onEvent: onEvent)
-        }
         return try await analyzeVisionImageAsDescribeMeal(capture: capture, onEvent: onEvent)
     }
 
@@ -1855,33 +1763,18 @@ class APIClient {
             throw APIError.server("这次没有拿到照片，请重新拍一张或手动补记。")
         }
 
-        onEvent?(["stage": "vision_started", "message": "正在识别可见食物和估算营养"])
-        var metadata = capture.captureMetadata
-        metadata["has_depth"] = false
-        metadata["capture_pipeline"] = "qwen_vl_direct_nutrition"
-        var payload: [String: Any] = [
-            "source": "library",
-            "image_base64": capture.imageBase64,
-            "capture_metadata": metadata,
-        ]
-        if let depthMetadata = capture.depthMetadata {
-            payload["depth_metadata"] = depthMetadata
-        }
+        onEvent?(["stage": "vision_started", "message": "千问正在识别食物并估算营养"])
+        let meal = try await QwenCredentials.service().analyzeMeal(
+            imageBase64: Self.preparedMealImage(capture.imageBase64),
+            auxiliaryImages: capture.auxiliaryImagesBase64.prefix(4).map { try Self.preparedMealImage($0) }
+        )
+        let foods = Self.qwenFoodItems(meal)
+        onEvent?(["stage": "final", "items": foods.map { ["name": $0.name] }, "message": "识别出 \(foods.count) 项，请确认份量"])
+        return DescribeMealResponse(foods: foods, healthScore: nil, description: meal.description, decision: nil)
+    }
 
-        var req = URLRequest(url: URL(string: base + "/describeMeal")!)
-        req.httpMethod = "POST"
-        req.setValue("application/json", forHTTPHeaderField: "Content-Type")
-        req.httpBody = try JSONSerialization.data(withJSONObject: payload)
-        req.timeoutInterval = 180
-        let (data, response) = try await perform(req)
-        try validate(response: response, data: data)
-        let result = try decodeResponse(DescribeMealResponse.self, from: data)
-        onEvent?([
-            "stage": "final",
-            "items": result.foods.map { ["name": $0.name] },
-            "message": "识别出 \(result.foods.count) 项食物",
-        ])
-        return result
+    private static func preparedMealImage(_ raw: String) throws -> String {
+        try platformUploadJPEGData(from: imageData(fromBase64: raw)).base64EncodedString()
     }
 
     private func requireGPUVisionPipeline() async throws {
@@ -2070,41 +1963,7 @@ class APIClient {
     }
 
     private func perform(_ request: URLRequest) async throws -> (Data, URLResponse) {
-        let retryableStatusCodes: Set<Int> = [429, 503, 529]
-        let method = (request.httpMethod ?? "GET").uppercased()
-        let path = request.url?.path.lowercased() ?? ""
-        let retrySafe = ["GET", "HEAD", "PUT", "DELETE"].contains(method)
-            || path.contains("describemeal")
-            || path.contains("/analyze")
-            || path.contains("/depth-meal")
-        let delays: [UInt64] = [1, 2, 4]
-        var lastConnectionError: URLError?
-
-        for attempt in 0...delays.count {
-            do {
-                let result = try await URLSession.shared.data(for: request)
-                if retrySafe,
-                   attempt < delays.count,
-                   let http = result.1 as? HTTPURLResponse,
-                   retryableStatusCodes.contains(http.statusCode) {
-                    try await Task.sleep(nanoseconds: delays[attempt] * 1_000_000_000)
-                    continue
-                }
-                return result
-            } catch let error as URLError {
-                lastConnectionError = error
-                if retrySafe, attempt < delays.count {
-                    try await Task.sleep(nanoseconds: delays[attempt] * 1_000_000_000)
-                    continue
-                }
-                print("[Cal AI API] request failed url=\(request.url?.absoluteString ?? "nil") code=\(error.code.rawValue) base=\(base)")
-                throw APIError.connection(base: base, code: error.code)
-            } catch {
-                print("[Cal AI API] request failed url=\(request.url?.absoluteString ?? "nil") error=\(error.localizedDescription) base=\(base)")
-                throw error
-            }
-        }
-        throw APIError.connection(base: base, code: lastConnectionError?.code ?? .cannotConnectToHost)
+        try await localStore.perform(request)
     }
 
     private func validate(response: URLResponse, data: Data) throws {

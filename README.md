@@ -1,8 +1,8 @@
 # LightCal · 食光
 
-一个使用 SwiftUI 和 FastAPI 构建的开源饮食与健康记录项目。支持拍照估算餐食、手动记录、条码查询，以及饮水、运动、体重、睡眠和轻断食记录。
+一个无需自建服务器的开源 iOS 饮食与健康记录应用。照片识别和聊天由手机直接调用通义千问，使用用户自己的 API Key；饮食、饮水、体重、运动、睡眠和断食记录保存在本机。仓库中的 FastAPI 服务保留用于独立研究与开发。
 
-An open-source SwiftUI app and FastAPI backend for meal estimation and daily health tracking.
+A server-free SwiftUI app with on-device records and direct Qwen photo/chat calls using your own API key. The Python backend remains optional research tooling.
 
 ## 界面预览
 
@@ -16,16 +16,31 @@ An open-source SwiftUI app and FastAPI backend for meal estimation and daily hea
 
 ## 功能
 
-- 从相册选图识别食物、估算可食克重和营养；配置 GPU 服务后可使用当前相机深度拍摄流程。
-- 按食物逐项查看、修改并保存餐食；记录剩余量并重算摄入。
-- 食物搜索、文字记录、条码查询和食材菜谱推荐。
-- 饮水、运动、体重、睡眠、步数、轻断食与每日汇总。
-- iOS 相机与可选深度采集、Apple Health 读写。
-- 多模型服务适配，以及独立的 GPU 深度识别实验接口。
+- 拍照或从相册选择食物照片，千问估算整份克重和营养；无需深度相机或 GPU 服务。
+- 千问多轮聊天；可选择将最近 7 天本机记录作为参考，默认关闭记录发送。
+- 设置中验证、更换、删除用户自己的百炼 Key；Key 存入本机系统钥匙串，不进入导出数据。
+- 手动及文字记录、基础食物搜索、常用餐食、饮水、运动、体重、睡眠、步数、断食和每日汇总。
+- Apple 健康授权、提醒、本机 JSON 数据导出和删除。
 
-这是面向个人使用和开发研究的单用户原型。营养和克重是估算值；无深度照片的个位数克重不代表测量精度。
+本机版不提供好友动态、跨设备云同步或外卖下单。原后端实验性评分、菜谱生成和深度分析接口不属于本机版功能。营养和份量均为估算，请确认后保存；建议不能替代医疗建议。
 
-## 快速启动后端
+## 运行 iOS App
+
+使用 macOS、Xcode 26 或更新版本，部署目标为 iOS 17.0。
+
+1. 打开 `ios/CalAI.xcodeproj`，选择 `CalAI` scheme。
+2. 在 Signing & Capabilities 中选择自己的开发团队；分发时使用自己有权限的 Bundle Identifier。
+3. 直接运行。记录与统计无需后端、Python、数据库服务或局域网地址。
+4. 打开“我的 → 设置 → 千问 API Key”，选择 Key 所属地域，填写自己的百炼 Key，阅读数据发送说明后开启授权，点击“验证并保存”。验证分别调用聊天和图片模型，可能产生少量费用。
+5. 普通记录可以离线使用；千问图片识别、聊天和文字估算需要联网。Apple 健康、相机及语音输入按需请求系统权限。
+
+记录保存在应用沙盒的 `Application Support/LightCal/local-records-v1.json`，使用受保护的原子写入。应用不提供开发者服务器云备份；卸载前请导出。Key 使用 `WhenUnlockedThisDeviceOnly` 钥匙串项，不随应用数据导出或跨设备同步。系统设备备份行为由用户的系统设置决定。
+
+[隐私说明](docs/privacy.md) · [发布准备](docs/app-store.md)
+
+## 可选：运行研究后端
+
+以下 Python / Docker 步骤仅用于独立研究。**iOS 本机版不会连接这些接口。**
 
 需要 Python 3.12 或更新版本。建议使用独立虚拟环境。
 
@@ -62,36 +77,23 @@ docker compose up --build
 
 数据保存在本地 `data/`，上传图片保存在 `static/uploads/`；这两个目录挂载到容器并被 Git 忽略。
 
-## 运行 iOS App
+## iOS 图片识别流程
 
-使用 macOS、Xcode 26 或更新版本，部署目标为 iOS 17.0。
+1. 手机读取本机钥匙串中的用户 Key，直接通过 HTTPS 调用所选地域的百炼接口。
+2. 使用 `qwen3-vl-plus` 分析主照片，可附带最多 4 张辅助照片；聊天和文字估算使用 `qwen-plus`。
+3. 严格解析整份营养 JSON，拒绝不完整结果、负数及明显不合理的重量/热量组合，不用零值伪造识别成功。
+4. 用户检查、修改并确认后，记录与照片保存到手机。
 
-1. 打开 `ios/CalAI.xcodeproj`，选择 `CalAI` scheme。
-2. 在 Signing & Capabilities 中选择自己的开发团队，按需修改 Bundle Identifier。
-3. 模拟器默认访问 `http://127.0.0.1:8001/v6`。
-4. 真机调试时，让手机和电脑处于同一网络；用 `--host 0.0.0.0` 启动后端，并在 App 设置或 `ios/CalAI/Info.plist` 的 `APIBaseURL` 中填写电脑的局域网地址。
-5. 健康数据同步及深度采集需要相应设备和系统权限。**当前相机界面要求有效深度数据，并依赖已部署且可访问的 GPU 服务；默认配置关闭 GPU，因此请从相册选图使用 Qwen 识别。** 无深度相机拍摄目前会被界面拒绝，尚未自动切换到普通照片路线。
+API Key、照片和聊天内容不会经过开发者服务器。照片及文字会发送给用户选择的阿里云地域，调用费用由用户的百炼账户承担。撤回授权或关闭记录发送会立即保存在本机，无需再次调用模型。
 
-开源工程使用自行绘制的简化 SVG 占位资源。发布 App 前请配置自己的 App Icon、签名及服务地址。
-
-## 图片识别流程
-
-默认配置为 `qwen-vl-plus` + `direct_nutrition`：
-
-1. 上传图片，后端转 RGB、压缩至最长边 1024 像素。
-2. 视觉模型逐项识别食物、数量、烹饪方式和置信度，并估算克重与核心营养。
-3. 解析 JSON，执行营养合理性规则及部分常见食物校正，合并重复项目。
-4. 返回食物和营养结果；用户检查、调整后保存。
-
-无可靠深度时，模型参考餐具、容器占比、堆叠外观、数量和常见份量估重。照片会发送至所配置的模型服务；API 调用可能产生费用。
-
-另有数据库校准、两阶段复核和 GPU 深度实验模式，见 [架构与配置](docs/architecture.md)。
+独立 Python 研究服务另有数据库校准、两阶段复核和 GPU 深度实验模式，见 [架构与配置](docs/architecture.md)。
 
 ## 测试
 
 在仓库根目录运行，使用测试替身而非真实模型密钥：
 
 ```bash
+swift test
 python -m pytest tests -q
 ```
 
@@ -104,7 +106,7 @@ xcodebuild -project ios/CalAI.xcodeproj -scheme CalAI \
   CODE_SIGNING_ALLOWED=NO build
 ```
 
-CI 自动运行 Python 测试和 iOS 模拟器编译。
+CI 自动运行 Swift 核心测试、Python 测试和 iOS 模拟器编译；`iOS offline flows` 使用真实 App 的测试目标验证本机记录解码和千问设置界面，不启动后端。
 
 ## 目录
 

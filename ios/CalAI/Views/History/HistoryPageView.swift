@@ -1562,7 +1562,7 @@ private struct ProgressMealListRow: View {
     @ViewBuilder
     private var mealImage: some View {
         if let url = meal.imageUrl {
-            AsyncImage(url: url) { phase in
+            LocalMealImage(url: url) { phase in
                 switch phase {
                 case .success(let image):
                     image.resizable().scaledToFill()

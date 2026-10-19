@@ -129,7 +129,7 @@ struct MealGroupDetailPageView: View {
     private var hero: some View {
         ZStack(alignment: .top) {
             if let url = group.imageUrl {
-                AsyncImage(url: url) { phase in
+                LocalMealImage(url: url) { phase in
                     switch phase {
                     case .success(let image):
                         image.resizable().scaledToFill()

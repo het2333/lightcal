@@ -1744,7 +1744,7 @@ private struct RecentMealCard: View {
         } else {
             ZStack(alignment: .bottomLeading) {
                 if let url = meal.imageUrl {
-                    AsyncImage(url: url) { phase in
+                    LocalMealImage(url: url) { phase in
                         switch phase {
                         case .success(let image):
                             image
