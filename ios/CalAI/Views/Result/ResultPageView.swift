@@ -187,9 +187,6 @@ struct ResultPageView: View {
                         }
                         .accessibilityLabel("分享记录")
                         Menu {
-                            Button("发到好友圈") {
-                                Task { await shareSavedMeal(visibility: "friends") }
-                            }
                             Button("再保存一次") {
                                 savedGroup = nil
                                 Task { _ = await saveIfNeeded() }

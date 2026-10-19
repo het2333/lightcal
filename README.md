@@ -6,7 +6,7 @@ A server-free SwiftUI app with on-device records and direct Qwen photo/chat call
 
 ## 界面预览
 
-以下截图于 2026 年 10 月 15 日从当前开源版本重新运行截取，使用独立演示数据。设备为 iPhone 17 Pro 模拟器（iOS 26.0）。
+以下为 2026 年 10 月 15 日的 0.1 版本演示截图，使用独立演示数据。设备为 iPhone 17 Pro 模拟器（iOS 26.0）；0.2 版本新增本机存储和千问设置。
 
 | 首页 | 记录总览 |
 | --- | --- |
