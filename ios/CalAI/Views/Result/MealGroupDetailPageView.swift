@@ -164,13 +164,6 @@ struct MealGroupDetailPageView: View {
                         }
                         .accessibilityLabel("分享记录")
                         Menu {
-                            Button("发到好友圈") {
-                                Task { await shareToCommunity(visibility: "friends") }
-                            }
-                            Button("记录剩余", action: startLeftoverFlow)
-                            Button("识别有误") {
-                                showFixSheet = true
-                            }
                             Button("回到首页", action: onClose)
                         } label: {
                             Image(systemName: "ellipsis")
@@ -349,18 +342,18 @@ struct MealGroupDetailPageView: View {
 
     private var mealInsightBody: String {
         if group.calories >= 900 {
-            return "后面一餐优先清淡、高蛋白、少油；如果没吃完，可以拍剩余照片修正。"
+            return "后面一餐优先清淡、高蛋白、少油；记录前请核对实际吃下的份量。"
         }
         if fatEnergyRatio >= 0.45 {
-            return "脂肪占比偏高，下一餐少油少炸；如果识别偏高，点右侧修正。"
+            return "脂肪占比偏高，下一餐少油少炸；照片营养是估算，请核对份量。"
         }
         if group.calories >= 350, group.protein < 18 {
             return "下一餐可以补鸡蛋、鱼虾、豆腐或鸡胸肉，让饱腹感更稳。"
         }
         if group.fiber >= 8 {
-            return "这餐对状态分有帮助，下一餐继续保持蛋白和蔬菜。"
+            return "这餐纤维较充足，下一餐继续注意蛋白和蔬菜。"
         }
-        return "如果食物、克重或吃剩比例不准，可以直接修正。"
+        return "食物和克重均为估算，请在保存前核对实际吃下的份量。"
     }
 
     private var mealInsightIcon: String {
@@ -473,20 +466,6 @@ struct MealGroupDetailPageView: View {
 
     private var bottomBar: some View {
         VStack(spacing: 10) {
-            HStack(spacing: 10) {
-                detailActionButton(
-                    title: "识别有误",
-                    subtitle: "名称、漏项或克重",
-                    icon: "exclamationmark.bubble.fill",
-                    action: { showFixSheet = true }
-                )
-                detailActionButton(
-                    title: "记录剩余",
-                    subtitle: "按没吃完的部分重算",
-                    icon: "camera.fill",
-                    action: startLeftoverFlow
-                )
-            }
             Button(action: onClose) {
                 Label("完成并返回首页", systemImage: "checkmark")
                     .font(.system(size: 17, weight: .black))

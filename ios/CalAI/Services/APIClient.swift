@@ -1882,10 +1882,13 @@ class APIClient {
     }
 
     func lookupBarcode(_ barcode: String) async throws -> DescribeMealResponse {
-        try await post("/describeMeal", json: [
-            "source": "barcode_scan",
-            "barcode": barcode,
-        ])
+        guard (8...14).contains(barcode.count), barcode.allSatisfy({ "0123456789".contains($0) }) else {
+            throw APIError.server("请输入 8–14 位数字条形码。")
+        }
+        let saved = try await getSavedFoods(limit: 1000)
+        let foods = saved.filter { $0.food.barcode == barcode }.prefix(1).map(\.food)
+        return DescribeMealResponse(foods: foods, healthScore: nil,
+            description: foods.isEmpty ? "本机收藏中没有这个条码，请拍营养表或手动记录" : "来自本机收藏，请确认实际份量", decision: nil)
     }
 
     private func parseSSEEvent(_ block: String) -> [String: Any]? {

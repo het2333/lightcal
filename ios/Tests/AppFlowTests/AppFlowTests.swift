@@ -60,4 +60,15 @@ final class AppFlowTests: XCTestCase {
         _ = try await client.cancelFasting()
         _ = try await client.getFastingStatus()
     }
+
+    func testBarcodeSearchUsesOnlyLocalSavedFoods() async throws {
+        let client = makeClient()
+        let missing = try await client.lookupBarcode("6900000000000")
+        XCTAssertTrue(missing.foods.isEmpty)
+        var food = FoodItem(name: "测试酸奶", calories: 120)
+        food.barcode = "6900000000000"
+        _ = try await client.saveFoodTemplate(food)
+        let found = try await client.lookupBarcode("6900000000000")
+        XCTAssertEqual(found.foods.first?.name, "测试酸奶")
+    }
 }
