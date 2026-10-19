@@ -12,7 +12,7 @@
 
 ## 独立 Python 研究服务
 
-iOS SwiftUI App 将图片发到 `POST /v6/describeMeal`。FastAPI 的 `DescribeMealService` 根据 `PHOTO_ANALYSIS_MODE` 选择处理流程，再返回食物列表、营养信息、健康评分与建议。保存记录是独立操作，SQLite 数据保存在 `data/`。
+独立研究客户端可将图片发到 `POST /v6/describeMeal`；iOS 本机版不调用此接口。FastAPI 的 `DescribeMealService` 根据 `PHOTO_ANALYSIS_MODE` 选择处理流程，再返回食物列表、营养信息、健康评分与建议。保存记录是独立操作，SQLite 数据保存在 `data/`。
 
 默认示例配置使用 `LLM_PROVIDER=qwen`、`QWEN_MODEL=qwen-vl-plus`、`PHOTO_ANALYSIS_MODE=direct_nutrition`。模型服务的价格、可用区域和模型名以服务商当前信息为准。
 
@@ -28,11 +28,11 @@ iOS SwiftUI App 将图片发到 `POST /v6/describeMeal`。FastAPI 的 `DescribeM
 
 数据库模式需要合适的食物与菜谱数据。仓库仅自带小型示例库，未附完整数据库。
 
-`POST /v6/describeMeal/stream` 有单独的阶段事件实现，当前实现区分直接估算和两阶段复核；其他模式在此接口上不与普通接口完全对应。当前 iOS 普通照片入口使用非流式接口。
+`POST /v6/describeMeal/stream` 有单独的阶段事件实现，当前实现区分直接估算和两阶段复核；其他模式在此接口上不与普通接口完全对应。iOS 本机版不调用这些流式或非流式研究接口。
 
 ## 可选深度分析
 
-带深度采集数据的 iOS 请求使用 `/v1/meal-captures`、文件上传、分析任务及餐食确认接口。配置 `DEPTH_PIPELINE_ENABLED`、`DEPTH_PIPELINE_BASE_URL` 和相应鉴权后，后端才能调用外部 GPU 服务。
+深度研究请求使用 `/v1/meal-captures`、文件上传、分析任务及餐食确认接口。配置 `DEPTH_PIPELINE_ENABLED`、`DEPTH_PIPELINE_BASE_URL` 和相应鉴权后，后端才能调用外部 GPU 服务。
 
 Python 深度实验要求独立 GPU 服务；`.env.example` 默认关闭 GPU。它不参与 iOS 本机版的图片识别。
 

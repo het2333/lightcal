@@ -6,13 +6,24 @@ A server-free SwiftUI app with on-device records and direct Qwen photo/chat call
 
 ## 界面预览
 
-以下为 2026 年 10 月 15 日的 0.1 版本演示截图，使用独立演示数据。设备为 iPhone 17 Pro 模拟器（iOS 26.0）；0.2 版本新增本机存储和千问设置。
+以下截图来自 2026 年 10 月 19 日实际运行的 0.2 本机版（iPhone 17 Pro 模拟器），展示新安装、尚未配置 Key 的状态。应用代码对应 `6cb1c36`；设置与聊天图片从实际运行录像提取。
+
+| 本机首页 | 千问设置 | 千问聊天 |
+| --- | --- | --- |
+| <img src="docs/screenshots/home-local.png" alt="无需后台服务的本机首页" width="250"> | <img src="docs/screenshots/qwen-settings.png" alt="个人 API Key 与千问授权设置" width="250"> | <img src="docs/screenshots/qwen-chat.png" alt="千问饮食聊天入口" width="250"> |
+
+<details>
+<summary>0.1 版本历史截图</summary>
+
+以下为 2026 年 10 月 15 日的 0.1 版本演示截图，使用独立演示数据。设备为 iPhone 17 Pro 模拟器（iOS 26.0）。
 
 | 首页 | 记录总览 |
 | --- | --- |
 | <img src="docs/screenshots/home.png" alt="首页与每日营养概览" width="320"> | <img src="docs/screenshots/meals.png" alt="记录总览与餐食日历" width="320"> |
 | 饮水记录 | 轻断食 |
 | <img src="docs/screenshots/hydration.png" alt="饮水记录页面" width="320"> | <img src="docs/screenshots/fasting.png" alt="轻断食页面" width="320"> |
+
+</details>
 
 ## 功能
 
