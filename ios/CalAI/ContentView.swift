@@ -2254,6 +2254,8 @@ struct SettingsPageView: View {
                         .foregroundStyle(accountMessage.contains("失败") ? Color(hex: "DC2626") : Color(hex: "159BFF"))
                         .frame(maxWidth: .infinity, alignment: .leading)
                 }
+                Link("LightCal 隐私政策", destination: URL(string: "https://github.com/het2333/lightcal/blob/main/docs/privacy.md")!)
+                    .font(.footnote)
             }
             .padding(.horizontal, 20)
             .padding(.top, 18)

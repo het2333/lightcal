@@ -44,6 +44,7 @@ struct QwenSettingsView: View {
                     Text("可选：将最近 7 天的饮食、饮水、体重、运动和饮食偏好发送给千问，用于个性化建议。关闭后只发送聊天内容。")
                         .font(.caption).foregroundStyle(.secondary)
                     Link("查看百炼数据隐私说明", destination: URL(string: "https://help.aliyun.com/zh/model-studio/privacy-notice")!)
+                    Link("LightCal 隐私政策", destination: URL(string: "https://github.com/het2333/lightcal/blob/main/docs/privacy.md")!)
                 }
                 Section {
                     Button {
